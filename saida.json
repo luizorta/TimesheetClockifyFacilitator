@@ -1,0 +1,1400 @@
+{
+   
+    "timeEntries": [
+        {
+            "id": "5de163b27d86944de837c14b",
+            "billable": true,
+            "description": "Portal Oficinas F2 | BARE | Criação de Portlets com Bibliotecas externas - Analisar causa de: \"parte java, beans, não está acionando\"",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-29T16:00:00Z",
+                "end": "2019-11-29T19:45:15Z",
+                "duration": "PT3H45M15S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5de0f7a54809562a24526e9b",
+            "billable": true,
+            "description": "Portal Oficinas F2 | BARE | Criação de Portlets com Bibliotecas externas - Analisar causa de: \"parte java, beans, não está acionando\"",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-29T10:45:00Z",
+                "end": "2019-11-29T15:00:00Z",
+                "duration": "PT4H15M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5ddff23db3bc842d7a1c8c3f",
+            "billable": true,
+            "description": "Portal Oficinas F2 | BARE | Criação de Portlets com Bibliotecas externas - Analisar causa de: \"parte java, beans, não está acionando\"",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-28T16:00:00Z",
+                "end": "2019-11-28T20:12:00Z",
+                "duration": "PT4H12M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5ddfc92d1ca53362a4939fb7",
+            "billable": true,
+            "description": "Portal Oficinas F2 | BARE | Criação de Portlets com Bibliotecas externas - Analisar causa de: \"parte java, beans, não está acionando\"",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-28T12:01:00Z",
+                "end": "2019-11-28T15:00:00Z",
+                "duration": "PT2H59M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5ddfa8001ca53362a4935052",
+            "billable": true,
+            "description": "Portal Oficinas F2 | BARE | Alinhamento com a documentação - Leitura da documentação e especificação",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-28T10:55:00Z",
+                "end": "2019-11-28T12:00:00Z",
+                "duration": "PT1H5M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5ddecb751ca53362a4924902",
+            "billable": true,
+            "description": "Portal Oficinas F2 | BARE | Alinhamento com a documentação - BSAD - Guia Referência - Documentação",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-27T19:16:04Z",
+                "end": "2019-11-27T20:12:00Z",
+                "duration": "PT55M56S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5ddeb8fc4809562a245178eb",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-27T16:00:00Z",
+                "end": "2019-11-27T19:16:03Z",
+                "duration": "PT3H16M3S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dde593e7d86944de83613be",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-27T11:01:00Z",
+                "end": "2019-11-27T15:00:00Z",
+                "duration": "PT3H59M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5ddd58254809562a24505c7d",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-26T16:00:00Z",
+                "end": "2019-11-26T20:02:34Z",
+                "duration": "PT4H2M34S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5ddd09294809562a244ff730",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-26T11:00:00Z",
+                "end": "2019-11-26T15:00:00Z",
+                "duration": "PT4H"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5ddbb5d27d86944de833c5f2",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-25T11:04:00Z",
+                "end": "2019-11-25T13:00:00Z",
+                "duration": "PT1H56M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dd800467d86944de83283ee",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-22T15:35:33Z",
+                "end": "2019-11-22T20:08:29Z",
+                "duration": "PT4H32M56S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dd7c2a41ca53362a486fe81",
+            "billable": false,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-22T11:07:00Z",
+                "end": "2019-11-22T14:50:00Z",
+                "duration": "PT3H43M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dd6bf991ca53362a4858ad8",
+            "billable": true,
+            "description": "Portal Oficinas F2 | BARE | Alinhamento com a documentação - Leitura da documentação e especificação",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-21T16:30:00Z",
+                "end": "2019-11-21T19:49:00Z",
+                "duration": "PT3H19M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dd675127d86944de8313794",
+            "billable": true,
+            "description": "Portal Oficinas F2 | BARE | Alinhamento com a documentação",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-21T11:09:00Z",
+                "end": "2019-11-21T15:30:00Z",
+                "duration": "PT4H21M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dd594ea7d86944de830b8d8",
+            "billable": true,
+            "description": "Portal Oficinas F2 | BARE | Alinhamento com a documentação - Leitura da documentação e especificação",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-20T19:23:00Z",
+                "end": "2019-11-20T20:07:24Z",
+                "duration": "PT44M24S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dd563cf1ca53362a48353a8",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-20T16:28:00Z",
+                "end": "2019-11-20T18:08:00Z",
+                "duration": "PT1H40M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dd536f61ca53362a482cbc6",
+            "billable": true,
+            "description": "Portal Oficinas F2 | BARE | Alinhamento com a documentação - Leitura da documentação e especificação",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-20T12:52:06Z",
+                "end": "2019-11-20T15:28:21Z",
+                "duration": "PT2H36M15S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dd526f61ca53362a4829d8f",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-20T11:16:00Z",
+                "end": "2019-11-20T12:51:26Z",
+                "duration": "PT1H35M26S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dd40f8cb3bc842d7a14b8dc",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-19T15:51:40Z",
+                "end": "2019-11-19T20:15:00Z",
+                "duration": "PT4H23M20S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dd3d7171ca53362a47f4000",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-19T11:12:00Z",
+                "end": "2019-11-19T14:50:00Z",
+                "duration": "PT3H38M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dd2bd38b3bc842d7a138695",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-18T15:56:00Z",
+                "end": "2019-11-18T20:11:00Z",
+                "duration": "PT4H15M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dd27e1d1ca53362a47c7f27",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-18T11:02:00Z",
+                "end": "2019-11-18T14:56:41Z",
+                "duration": "PT3H54M41S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dcd5e5a6da4494ac41b9752",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Projeto Geração de Portlets - Definir Biblioteca de Template para geração de estrutura de arquivos. Java Code.",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-14T15:50:00Z",
+                "end": "2019-11-14T20:05:00Z",
+                "duration": "PT4H15M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dcd35926da4494ac41b36a1",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview e Configuração Websphere Portal - Luiz Orta - Configuração do Portal Server em ambiente local utilizando Docker",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-14T11:04:00Z",
+                "end": "2019-11-14T14:50:00Z",
+                "duration": "PT3H46M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dcc30096da4494ac4194630",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview e Configuração Websphere Portal - Luiz Orta - Criação da documentação sobre \"Criando Tema, Página e Conteúdo no Portal Server\"",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-13T16:30:00Z",
+                "end": "2019-11-13T20:01:29Z",
+                "duration": "PT3H31M29S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dcbe6a26da4494ac41864a5",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview e Configuração Websphere Portal - Luiz Orta - Criação da documentação sobre \"Criando Tema, Página e Conteúdo no Portal Server\"",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-13T11:07:00Z",
+                "end": "2019-11-13T15:30:00Z",
+                "duration": "PT4H23M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dcae4a96da4494ac415b76d",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview e Configuração Websphere Portal - Luiz Orta - Criação da documentação sobre \"Criando Tema, Página e Conteúdo no Portal Server\"",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-12T16:30:00Z",
+                "end": "2019-11-12T20:04:00Z",
+                "duration": "PT3H34M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dcae48a6da4494ac415b5b9",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview e Configuração Websphere Portal - Luiz Orta - Criação da documentação sobre \"Criando Tema, Página e Conteúdo no Portal Server\"",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-12T13:30:00Z",
+                "end": "2019-11-12T15:30:00Z",
+                "duration": "PT2H"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dca94ef6da4494ac414cf50",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview e Configuração Websphere Portal - Luiz Orta - Configuração do Portal Server em ambiente local utilizando Docker",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-12T11:00:00Z",
+                "end": "2019-11-12T13:30:00Z",
+                "duration": "PT2H30M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc9a4ea7d86944de8288c91",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview e Configuração Websphere Portal - Luiz Orta - Configuração do Portal Server em ambiente local utilizando Docker",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-11T16:00:00Z",
+                "end": "2019-11-11T20:00:00Z",
+                "duration": "PT4H"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc942d96da4494ac4128250",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview e Configuração Websphere Portal - Luiz Orta - Configuração do Portal Server em ambiente local utilizando Docker",
+            "project": {
+                "id": "5db6e95067ef9626645616f7",
+                "name": "Portal Oficinas F2 BACK",
+                "color": "#9C27B0"
+            },
+            "clientId": "5cd5cd86d278ae71f5ccbdc8",
+            "clientName": "Bradesco RJ",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-11T11:00:00Z",
+                "end": "2019-11-11T15:00:00Z",
+                "duration": "PT4H"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc597337d86944de826dbae",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview e Configuração Websphere Portal - Luiz Orta - Configuração do Portal Server em ambiente local utilizando Docker",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-08T16:26:26Z",
+                "end": "2019-11-08T20:00:00Z",
+                "duration": "PT3H33M34S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc5971fb3bc842d7a0c4dd6",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview e Configuração Websphere Portal - Luiz Orta - Configuração do Portal Server em ambiente local utilizando Docker",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-08T15:53:00Z",
+                "end": "2019-11-08T16:26:12Z",
+                "duration": "PT33M12S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc549dd6da4494ac40d39e8",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview e Configuração Websphere Portal - Luiz Orta - Configuração do Portal Server em ambiente local utilizando Docker",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-08T11:00:00Z",
+                "end": "2019-11-08T14:53:00Z",
+                "duration": "PT3H53M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc43c86c85bbe6ffddaa1a5",
+            "billable": true,
+            "description": "Alinhamento com a documentação - \"Proj BARE Oficinas F2 - Especificação\" - Leitura da documentação e especificação",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-07T15:47:18Z",
+                "end": "2019-11-07T20:00:00Z",
+                "duration": "PT4H12M42S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc42473e30b36743f9766c5",
+            "billable": true,
+            "description": "Alinhamento com a documentação - \"Proj BARE Oficinas F2 - Especificação\" - Leitura da documentação e especificação",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-07T14:00:00Z",
+                "end": "2019-11-07T14:50:00Z",
+                "duration": "PT50M"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc3ffbabe6e746765c37a45",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview e Configuração Websphere Portal - Luiz Orta - Configuração do Portal Server em ambiente local utilizando Docker",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-07T11:00:00Z",
+                "end": "2019-11-07T14:00:18Z",
+                "duration": "PT3H18S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc2ed52be6e746765c161a8",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview e Configuração Websphere Portal - Luiz Orta - Configuração do Portal Server em ambiente local utilizando Docker",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-06T15:57:05Z",
+                "end": "2019-11-06T20:00:50Z",
+                "duration": "PT4H3M45S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc2ab9dbe6e746765c0cded",
+            "billable": true,
+            "description": "Atividades Iniciais - Luiz Orta - Configuração do Portal Server em ambiente local utilizando Docker",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-06T11:00:00Z",
+                "end": "2019-11-06T14:56:44Z",
+                "duration": "PT3H56M44S"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc1708ea61b7735e1b6e103",
+            "billable": true,
+            "description": "Atividades Iniciais - Luiz Orta - Configuração do Portal Server em ambiente local utilizando Docker",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-05T16:00:00Z",
+                "end": "2019-11-05T21:00:00Z",
+                "duration": "PT5H"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc170be5eebfc4ae07d6a28",
+            "billable": true,
+            "description": "Atividades Iniciais - Luiz Orta - Overview Websphere Portal",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-05T12:00:00Z",
+                "end": "2019-11-05T14:00:00Z",
+                "duration": "PT2H"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc16f1ba61b7735e1b6ddaa",
+            "billable": true,
+            "description": "Fábrica CWB | Integração | Overview Trello e Clockify",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-05T11:00:00Z",
+                "end": "2019-11-05T12:00:00Z",
+                "duration": "PT1H"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc16ff45eebfc4ae07d6962",
+            "billable": true,
+            "description": "Atividades Iniciais - Luiz Orta - Overview Websphere Portal",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-04T16:00:00Z",
+                "end": "2019-11-04T20:00:00Z",
+                "duration": "PT4H"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        },
+        {
+            "id": "5dc16f8fa61b7735e1b6dea5",
+            "billable": true,
+            "description": "Atividades Iniciais - Luiz Orta - Configuração do Portal Server em ambiente local utilizando Docker",
+            "project": {
+                "id": "5ce7049ca02f7a622e4bda61",
+                "name": "Demandas Internas",
+                "color": "#795548"
+            },
+            "clientId": "5cdc5bb4f15c987770e933f2",
+            "clientName": "Fábrica CWB",
+            "hourlyRate": {
+                "amount": 0,
+                "currency": "R$"
+            },
+            "timeInterval": {
+                "start": "2019-11-04T11:00:00Z",
+                "end": "2019-11-04T15:00:00Z",
+                "duration": "PT4H"
+            },
+            "user": {
+                "id": "5dc07145b36ea8270fcf00c7",
+                "name": "Luiz Orta",
+                "email": "luiz.orta@mjv.com.br"
+            },
+            "task": null,
+            "tags": null,
+            "totalBillable": 0,
+            "isLocked": false,
+            "workspaceId": "5cd5b8daf15c98690baa2da3"
+        }
+    ]
+}
