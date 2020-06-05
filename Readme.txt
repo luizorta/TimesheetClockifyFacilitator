@@ -1,0 +1,3 @@
+- Abrir o iFractal, espelho
+- Exportar para -> html
+- copiar o codigo fonte do relatorio...

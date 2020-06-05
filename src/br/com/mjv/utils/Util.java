@@ -1,5 +1,7 @@
 package br.com.mjv.utils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -7,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.joda.time.Period;
 import org.joda.time.PeriodType;
 import org.joda.time.format.PeriodFormatter;
@@ -87,6 +90,26 @@ public class Util {
 		}
 
 		return dates;
+	}
+	
+	
+	/*
+	 * Convert String of data dd/MM/yyyy to yyyy-MM-dd
+	 */
+	public static String formatDate(String data) {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		String resultado = data;
+		try {
+			resultado = sdf.format(DateUtils.parseDate(data, new String[] {"dd/MM/yyyy"}));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+		
 	}
 
 }
