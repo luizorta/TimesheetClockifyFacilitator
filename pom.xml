@@ -79,15 +79,5 @@
 			<artifactId>jersey-media-json-jackson</artifactId>
 			<version>2.22</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>3.0.5.RELEASE</version>
-		</dependency>
-
-
-
 	</dependencies>
 </project>
