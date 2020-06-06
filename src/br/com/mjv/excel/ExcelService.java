@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -41,9 +42,9 @@ public class ExcelService {
 		 * Inicio das datas Domingos nao aparecem na planilha
 		 * 
 		 */
-		List<String> datas = Util.getDatasMes(ano, mes);
+		List<LocalDate> datas = Util.getDatasMes(ano, mes);
 		int i = 1;
-		for (String data : datas) {
+		for (LocalDate data : datas) {
 
 			try {
 
@@ -52,7 +53,7 @@ public class ExcelService {
 					/*
 					 * Adiciona o horário total do dia
 					 */
-					if (atividade.getData().equalsIgnoreCase(data)) {
+					if (data.isEqual(atividade.getData())) {
 						cellReference = new CellReference("B" + (i + 10));
 						row = sheet.getRow(cellReference.getRow());
 						cell = row.getCell(cellReference.getCol());

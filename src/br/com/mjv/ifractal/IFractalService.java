@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,7 @@ public class IFractalService {
 		List<Atividade> atividades = new ArrayList<Atividade>();
 
 		BufferedReader objReader = null;
+		
 		try {
 			String strCurrentLine;
 
@@ -34,8 +38,9 @@ public class IFractalService {
 					Atividade atividade = new Atividade();
 					int beginIndex      = strCurrentLine.indexOf(toCompare) - 3;
 					int endIndex        = beginIndex + 10;
-					String data         = strCurrentLine.substring(beginIndex, endIndex);
-					atividade.setData(data);
+					String strDate      = strCurrentLine.substring(beginIndex, endIndex);
+					LocalDate date      = LocalDate.parse(strDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+					atividade.setData(date);
 
 					// pega a próxima linha que contem horario da primeira entrada
 					String delimiter = "</td>";
@@ -47,15 +52,15 @@ public class IFractalService {
 					String horario1Entrada = strCurrentLine.substring(beginIndex, endIndex);
 					
 					if(validarHorario(horario1Entrada))
-						atividade.setHorario1Entrada(horario1Entrada);
+						atividade.setHorario1Entrada(LocalTime.parse(horario1Entrada, DateTimeFormatter.ofPattern("HH:mm")));
 					
 					strCurrentLine = objReader.readLine();
 					beginIndex     = strCurrentLine.indexOf(delimiter) - 6;
 					endIndex       = beginIndex + 5;
 					
-					String horario1Saida   = strCurrentLine.substring(beginIndex, endIndex);
+					String horario1Saida = strCurrentLine.substring(beginIndex, endIndex);
 					if(validarHorario(horario1Saida))
-						atividade.setHorario1Saida(horario1Saida);
+						atividade.setHorario1Saida(LocalTime.parse(horario1Saida, DateTimeFormatter.ofPattern("HH:mm")));
 					
 					strCurrentLine = objReader.readLine();
 					beginIndex     = strCurrentLine.indexOf(delimiter) - 6;
@@ -63,25 +68,25 @@ public class IFractalService {
 					
 					String horario2Entrada = strCurrentLine.substring(beginIndex, endIndex);
 					if(validarHorario(horario2Entrada))
-						atividade.setHorario2Entrada(horario2Entrada);
+						atividade.setHorario2Entrada(LocalTime.parse(horario2Entrada, DateTimeFormatter.ofPattern("HH:mm")));
 					
 					strCurrentLine = objReader.readLine();
 					beginIndex     = strCurrentLine.indexOf(delimiter) - 6;
 					endIndex       = beginIndex + 5;
 					
-					String horario2Saida   = strCurrentLine.substring(beginIndex, endIndex);
+					String horario2Saida = strCurrentLine.substring(beginIndex, endIndex);
 					if(validarHorario(horario2Saida))
-						atividade.setHorario2Saida(horario2Saida);
+						atividade.setHorario2Saida(LocalTime.parse(horario2Saida, DateTimeFormatter.ofPattern("HH:mm")));
 
 					//Vai recuperar o total de horas trabalhadas no dia
-					strCurrentLine         = objReader.readLine();
+					strCurrentLine = objReader.readLine();
 					beginIndex = strCurrentLine.indexOf(delimiter) - 5;
 					endIndex   = beginIndex + 5;
 					
-					String totalHoras      = strCurrentLine.substring(beginIndex, endIndex);
+					String totalHoras = strCurrentLine.substring(beginIndex, endIndex);
 					
 					if(validarHorario(totalHoras))
-						atividade.setTotalHoras(totalHoras);
+						atividade.setTotalHoras(LocalTime.parse(totalHoras, DateTimeFormatter.ofPattern("HH:mm")));
 					
 					if(validarDataAtividade(atividade))
 						atividades.add(atividade);

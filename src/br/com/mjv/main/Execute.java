@@ -8,7 +8,6 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import br.com.mjv.clockify.restservice.ClockifyRestService;
 import br.com.mjv.dto.Atividade;
-import br.com.mjv.excel.ExcelService;
 import br.com.mjv.ifractal.IFractalService;
 
 public class Execute {
@@ -30,6 +29,16 @@ public class Execute {
 		mes = Integer.parseInt(args[2]);
 		ano = Integer.parseInt(args[3]);
 		
+//		LocalTime t1 = LocalTime.of(9, 45);  // 09:00
+//		LocalTime t2 = LocalTime.of(2, 30); // 02:30
+//		LocalTime total = t1.plusHours(t2.getHour())
+//		                    .plusMinutes(t2.getMinute());  // 12:15
+		
+		//LocalDateTime date = 
+			//LocalDateTime.parse("2020-06-01 00:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		
+		
+	
 		Execute exe = new Execute();
 		exe.run();
 
@@ -44,11 +53,13 @@ public class Execute {
 		
 		
 		
-		ClockifyRestService.inserirAtividadesClockify(atividadesIfractal, apiKey);
+//		ClockifyRestService.inserirAtividadesClockify(atividadesIfractal, apiKey);
 
-		//List<Atividade> atividades = clockifyRestService.carregarAtividadesFromClockify(ano, mes, apiKey);
+		List<Atividade> atividadesClockify = ClockifyRestService.carregarAtividadesFromClockify(ano, mes, apiKey);
 
 		//excelService.updatePlanilha(nomeColaborador, atividades, ano, mes);
+		
+		System.out.println("");
 
 	}
 
