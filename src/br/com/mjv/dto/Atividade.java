@@ -3,7 +3,7 @@ package br.com.mjv.dto;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Atividade {
+public class Atividade implements Comparable<Atividade> {
 
 	private LocalDate data;
 	private LocalTime totalHoras;
@@ -90,9 +90,10 @@ public class Atividade {
 	public void setHorario2Saida(LocalTime horario2Saida) {
 		this.horario2Saida = horario2Saida;
 	}
-	
-	
 
-	
+	@Override
+	public int compareTo(Atividade o) {
+		return getData().compareTo(o.getData());
+	}
 
 }

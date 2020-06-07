@@ -2,6 +2,7 @@ package br.com.mjv.clockify.restservice;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -14,6 +15,9 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.lang.StringUtils;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.mjv.clockify.dto.ClockifyResponse;
 import br.com.mjv.clockify.dto.Entry;
@@ -38,14 +42,14 @@ public class ClockifyRestService {
 		request.accept(MediaType.APPLICATION_JSON_TYPE);
 
 		String startDate = ano + "-" + StringUtils.leftPad(String.valueOf(mes), 2, '0') + "-01T00:00:00Z";
-		// 2020-05-31T23:59:59.999Z
-		
+
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MONTH, mes-1);
+		cal.set(Calendar.MONTH, mes - 1);
 		cal.set(Calendar.YEAR, ano);
-		
+
 		int lastDayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-		String endDate = ano + "-" + StringUtils.leftPad(String.valueOf(mes), 2, '0') + "-" + lastDayOfMonth + "T23:59:59Z";
+		String endDate = ano + "-" + StringUtils.leftPad(String.valueOf(mes), 2, '0') + "-" + lastDayOfMonth
+				+ "T23:59:59Z";
 
 		String body = "{\n" + "\"startDate\": \"" + startDate + "\",\n" + "\"endDate\": \"" + endDate + "\",\n"
 				+ "\"me\": \"true\",\n" + "\"userGroupIds\": [],\n" + "\"userIds\": [],\n" + "\"projectIds\": [],\n"
@@ -94,64 +98,173 @@ public class ClockifyRestService {
 	}
 
 	public static void inserirAtividadeClockify(Atividade atividade, String apiKey) {
+		
+		System.out.println("Inserindo registro(s) referente ao dia: " + atividade.getData());
 
-//		String url = "https://api.clockify.me/api/v1/workspaces/" + MJV_WORKSPACE + "/time-entries";
-//
-//		Client client = ClientBuilder.newClient();
-//		WebTarget resource = client.target(url.toString());
-//
-//		Invocation.Builder request = resource.request();
-//		request.header("X-Api-Key", apiKey);
-//		request.accept(MediaType.APPLICATION_JSON_TYPE);
-//
-//		String data = Util.formatDate(atividade.getData());
-//		int horaEntrada = Integer.parseInt(atividade.getHorario1Entrada().substring(0, 2));
-//		int minutoEntrada = Integer.parseInt(atividade.getHorario1Entrada().substring(3, 5));
-//		
-//		String startDate = data + "T" + StringUtils.leftPad(String.valueOf((horaEntrada+3)), 2, '0') + 
-//				":" +
-//				StringUtils.leftPad(String.valueOf(minutoEntrada), 2, '0') + ":00Z";
-//		
-//		String body = "";
-//
-//		/*
-//		 * Se ja tiver batido o ponto, pega o horario da saida
-//		 */
-//		if (atividade.getHorario1Saida() != null) {
-//			
-//			int horas1Saida = Integer.parseInt(atividade.getHorario1Saida().substring(0, 2));
-//			
-//			String endDate;
-//			
-//			if(horas1Saida > 12) {
-//				endDate = data + "T15:00:00Z";
-//				body = "{\n" + "\"start\": \"" + startDate + "\",\n" + "\"end\": \"" + endDate + "\"\n" + "}";
-//				request.post(Entity.json(body)).readEntity(String.class);
-//				
-//				startDate = data + "T16:00:00Z";
-//				
-//				int horaSaida = Integer.parseInt(atividade.getHorario1Saida().substring(0, 2));
-//				int minutoSaida = Integer.parseInt(atividade.getHorario1Saida().substring(3, 5));
-//				endDate   = data + "T" + StringUtils.leftPad(String.valueOf((horaSaida+3)), 2, '0') + 
-//						":" +
-//						StringUtils.leftPad(String.valueOf(minutoSaida), 2, '0') + ":00Z";
-//				body = "{\n" + "\"start\": \"" + startDate + "\",\n" + "\"end\": \"" + endDate + "\"\n" + "}";
-//				
-//				request.post(Entity.json(body)).readEntity(String.class);
-//				
-//			}else {
-//				int horaSaida = Integer.parseInt(atividade.getHorario1Saida().substring(0, 2));
-//				endDate = data + "T" + StringUtils.leftPad(String.valueOf((horaSaida+3)), 2, '0') + ":00Z";
-//				body = "{\n" + "\"start\": \"" + startDate + "\",\n" + "\"end\": \"" + endDate + "\"\n" + "}";
-//				
-//				request.post(Entity.json(body)).readEntity(String.class);
-//			}
-//			
-//		} else {
-//			body = "{\n" + "  \"start\": \"" + startDate + "\"\n" + "}";
-//			request.post(Entity.json(body)).readEntity(String.class);
-//		}
+		String startDate;
+		String endDate;
+
+		String body = "";
+
+		//Ajuste em horas para enviar ao servidor.
+		final int ajuste = 3;
+		
+		String seconds = ":00Z";
+		
+		LocalDate dataAtividade   = atividade.getData();
+		LocalTime horario1Entrada = atividade.getHorario1Entrada();
+		LocalTime horario1Saida   = atividade.getHorario1Saida();
+		LocalTime horario2Entrada = atividade.getHorario2Entrada();
+		LocalTime horario2Saida   = atividade.getHorario2Saida();
+		LocalTime horarioSaidaAlmoco  = LocalTime.of(12, 0);
+		LocalTime horarioVoltaAlmoco  = LocalTime.of(13, 0);
+		
+		horarioSaidaAlmoco = horarioSaidaAlmoco.plusHours(ajuste);
+		horarioVoltaAlmoco = horarioVoltaAlmoco.plusHours(ajuste);
+
+				
+		if(horario1Entrada != null) {
+			horario1Entrada = horario1Entrada.plusHours(ajuste);
+		}
+		if(horario1Saida != null) {
+			horario1Saida = horario1Saida.plusHours(ajuste);
+		}
+		if(horario2Entrada != null) {
+			horario2Entrada = horario2Entrada.plusHours(ajuste);
+		}
+		if(horario2Saida != null) {
+			horario2Saida = horario2Saida.plusHours(ajuste);
+		}
+		
+		/**
+		    Apenas o primeiro horário de entrada
+		    horario1Entrada:  08:00
+			horario1Saida:    null;
+			horario2Entrada:  null;
+			horario2Saida:    null;
+		 */
+		if(horario1Entrada!= null && horario1Saida == null && horario2Entrada == null && horario2Saida == null) {
+			startDate = atividade.getData() + "T" + horario1Entrada + seconds;
+			body      = "{\n" + "  \"start\": \"" + startDate + "\"\n" + "}";
+			executeCall(body, apiKey);
+		}
+		
+		if(horario1Entrada!= null && horario1Saida != null && horario2Entrada == null && horario2Saida == null) {
+			
+			/**
+				Horário de entrada até meio dia + entrada às 13:00 até horário de saída
+			    horario1Entrada:  08:00;
+				horario1Saida:    17:00;
+				horario2Entrada:  null;
+				horario2Saida:    null;
+			 */	
+			if (horario1Saida.getHour() > (12 + ajuste)) {
+				
+				/*
+				 * Primeiro registro.
+				 * Horário de entrada até 12:00 (horário de almoço)
+				 */
+				startDate = dataAtividade + "T" + horario1Entrada + seconds;
+				endDate   = dataAtividade + "T" + horarioSaidaAlmoco + seconds;
+				body      = "{\n" + "\"start\": \"" + startDate + "\",\n" + "\"end\": \"" + endDate + "\"\n" + "}";
+				executeCall(body, apiKey);
+
+				/*
+				 * Segundo registro.
+				 * das 13:00 (volta do almoço) até horário de saída
+				 */
+				startDate = dataAtividade + "T" + horarioVoltaAlmoco + seconds;
+				endDate   = dataAtividade + "T" + horario1Saida + seconds;
+				body      = "{\n" + "\"start\": \"" + startDate + "\",\n" + "\"end\": \"" + endDate + "\"\n" + "}";
+				executeCall(body, apiKey);
+				
+			}
+			else {
+				
+				/**
+					Horário de entrada até horário da primeira saída (antes do almoço)
+					horario1Entrada:  08:00;
+					horario1Saida:    11:00;
+					horario2Entrada:  null;
+					horario2Saida:    null; 
+				 */
+				startDate = dataAtividade + "T" + horario1Entrada + seconds;
+				endDate   = dataAtividade + "T" + horario1Saida + seconds;
+				body      = "{\n" + "\"start\": \"" + startDate + "\",\n" + "\"end\": \"" + endDate + "\"\n" + "}";
+				executeCall(body, apiKey);
+				
+			}
+		}
+		
+		
+		if(horario1Entrada!= null && horario1Saida != null && horario2Entrada != null) {
+			
+			/**
+				Horário de entrada até horário primeira saída
+				horario1Entrada:  08:00;
+				horario1Saida:    11:00;
+				horario2Entrada:  13:00;
+				horario2Saida:    ?;
+			 */
+			startDate = dataAtividade + "T" + horario1Entrada + seconds;
+			endDate   = dataAtividade + "T" + horario1Saida + seconds;
+			body      = "{\n" + "\"start\": \"" + startDate + "\",\n" + "\"end\": \"" + endDate + "\"\n" + "}";
+			executeCall(body, apiKey);
+
+			/**
+				Horário segunda entrada
+			    horario1Entrada:  08:00;
+				horario1Saida:    11:00;
+				horario2Entrada:  13:22;
+				horario2Saida:    null;
+			 */
+			if (horario2Saida == null) {
+				/**
+				 * + Horário segunda entrada até horário segunda saída
+				 */
+				startDate = dataAtividade + "T" + horario2Entrada + seconds;
+				body      = "{\n" + "  \"start\": \"" + startDate + "\"\n" + "}";
+				executeCall(body, apiKey);
+			} else {
+				/**
+					Horário segunda entrada + horário da segunda saída
+				    horario1Entrada:  08:00;
+					horario1Saida:    11:00;
+					horario2Entrada:  13:00;
+					horario2Saida:    19:00;
+				 */
+				startDate = dataAtividade + "T" + horario2Entrada + seconds;
+				endDate   = dataAtividade + "T" + horario2Saida + seconds;
+				body      = "{\n" + "\"start\": \"" + startDate + "\",\n" + "\"end\": \"" + endDate + "\"\n" + "}";
+				executeCall(body, apiKey);
+			}
+			
+		}
 
 	}
+	
+	private static void executeCall(String body, String apiKey) {
+		String url = "https://api.clockify.me/api/v1/workspaces/" + MJV_WORKSPACE + "/time-entries";
 
+		Client client = ClientBuilder.newClient();
+		WebTarget resource = client.target(url.toString());
+
+		Invocation.Builder request = resource.request();
+		request.header("X-Api-Key", apiKey);
+		request.accept(MediaType.APPLICATION_JSON_TYPE);
+		
+		try {
+			String json = request.post(Entity.json(body)).readEntity(String.class);
+			ObjectMapper mapper = new ObjectMapper();
+			JsonNode node = mapper.readTree(json);
+			if(node.get("message") != null) {
+				String message = node.get("message").asText();
+				System.err.println(message);
+				System.err.println("body: " + body);
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

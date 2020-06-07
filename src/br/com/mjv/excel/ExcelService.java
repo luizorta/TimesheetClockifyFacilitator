@@ -22,7 +22,7 @@ import br.com.mjv.utils.Util;
 
 public class ExcelService {
 	
-	public void updatePlanilha(String nomeColaborador, List<Atividade> atividades, int ano, int mes) throws InvalidFormatException, IOException {
+	public static void updatePlanilha(String nomeColaborador, List<Atividade> atividades, int ano, int mes) throws InvalidFormatException, IOException {
 
 		File file = new File("entrada.xlsx");
 		FileInputStream fis = new FileInputStream(file);
