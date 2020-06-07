@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.mjv.clockify.dto.ClockifyResponse;
 import br.com.mjv.clockify.dto.Entry;
 import br.com.mjv.dto.Atividade;
-import br.com.mjv.utils.Util;
+import br.com.mjv.utils.DateUtils;
 
 public class ClockifyRestService {
 
@@ -71,7 +71,7 @@ public class ClockifyRestService {
 			LocalDate date = LocalDate.parse(firstDate);
 			atividade.setData(date);
 
-			atividade.setTotalHoras(Util.getTotalHoras(date, response));
+			atividade.setTotalHoras(DateUtils.getTotalHoras(date, response));
 
 			if (atividades.size() >= 1) {
 				Atividade ultimaAtividade = atividades.get(atividades.size() - 1);

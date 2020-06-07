@@ -18,9 +18,9 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import br.com.mjv.dto.Atividade;
-import br.com.mjv.utils.Util;
+import br.com.mjv.utils.DateUtils;
 
-public class ExcelService {
+public class ExcelFacade {
 	
 	public static void updatePlanilha(String nomeColaborador, List<Atividade> atividades, int ano, int mes) throws InvalidFormatException, IOException {
 
@@ -42,7 +42,7 @@ public class ExcelService {
 		 * Inicio das datas Domingos nao aparecem na planilha
 		 * 
 		 */
-		List<LocalDate> datas = Util.getDatasMes(ano, mes);
+		List<LocalDate> datas = DateUtils.getDatasMes(ano, mes);
 		int i = 1;
 		for (LocalDate data : datas) {
 
@@ -98,7 +98,7 @@ public class ExcelService {
 		row = sheet.getRow(cellReference.getRow());
 		cell = row.getCell(cellReference.getCol());
 		cell.setCellType(CellType.STRING);
-		cell.setCellValue(Util.getTotalHorasMes(atividades) + ":00");
+		cell.setCellValue(DateUtils.getTotalHorasMes(atividades) + ":00");
 
 		// Write the output to the file
 		FileOutputStream fileOut = new FileOutputStream("saida.xlsx");

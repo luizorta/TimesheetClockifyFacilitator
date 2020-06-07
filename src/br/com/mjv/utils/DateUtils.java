@@ -10,13 +10,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import org.apache.commons.lang.time.DateUtils;
-
 import br.com.mjv.clockify.dto.ClockifyResponse;
 import br.com.mjv.clockify.dto.Entry;
 import br.com.mjv.dto.Atividade;
 
-public class Util {
+public class DateUtils {
 
 	public static LocalTime getTotalHorasMes(List<Atividade> atividades) {
 
@@ -97,7 +95,7 @@ public class Util {
 
 		String resultado = data;
 		try {
-			resultado = sdf.format(DateUtils.parseDate(data, new String[] { "dd/MM/yyyy" }));
+			resultado = sdf.format(org.apache.commons.lang.time.DateUtils.parseDate(data, new String[] { "dd/MM/yyyy" }));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -105,6 +103,37 @@ public class Util {
 
 		return resultado;
 
+	}
+	
+	/**
+	 * Valida se um horario é valido
+	 * 
+	 * @param horario
+	 * @return
+	 */
+	public static boolean validarHorario(String horario) {
+		try {
+			org.apache.commons.lang.time.DateUtils.parseDate(horario, new String[] { "HH:mm" });
+		} catch (ParseException e) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Valida se existe horario cadastrado para esse dia.
+	 * 
+	 * @param atividade
+	 * @return
+	 */
+	public static boolean validarDataAtividade(Atividade atividade) {
+		if (atividade.getHorario1Entrada() != null || atividade.getHorario1Saida() != null
+				|| atividade.getHorario2Entrada() != null || atividade.getHorario2Saida() != null) {
+			return true;
+		}
+
+		return false;
 	}
 
 }
