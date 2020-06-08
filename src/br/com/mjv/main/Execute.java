@@ -10,6 +10,8 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import br.com.mjv.clockify.restservice.ClockifyRestService;
 import br.com.mjv.dto.Atividade;
+import br.com.mjv.excel.ExcelFacade;
+import br.com.mjv.excel.ExcelFacadeImpl;
 import br.com.mjv.ifractal.IFractalFacade;
 import br.com.mjv.ifractal.IFractalTextFacadeImpl;
 
@@ -43,21 +45,22 @@ public class Execute {
 
 	private static void run() throws IOException, InvalidFormatException {
 
-		//IFractalFacade facade = new IFractalHTMLFacadeImpl();
-		IFractalFacade facade = new IFractalTextFacadeImpl();
+		//IFractalFacade iFractalFacade = new IFractalHTMLFacadeImpl();
+		IFractalFacade iFractalFacade = new IFractalTextFacadeImpl();
 
-		List<Atividade> atividadesIfractal = facade.loadAtividadesFromIFractal(ano, mes);
+		List<Atividade> atividadesIfractal = iFractalFacade.loadAtividadesFromIFractal(ano, mes);
 		Collections.sort(atividadesIfractal);
 
-//		List<Atividade> atividadesClockify = ClockifyRestService.carregarAtividadesFromClockify(ano, mes, apiKey);
-//		Collections.sort(atividadesClockify);
+		List<Atividade> atividadesClockify = ClockifyRestService.carregarAtividadesFromClockify(ano, mes, apiKey);
+		Collections.sort(atividadesClockify);
 
-//		List<Atividade> atividadesParaInserir = getListaAtividadesIFractalQueNaoForamInseridasNoClockify(
-//				atividadesIfractal, atividadesClockify);
+		List<Atividade> atividadesParaInserir = getListaAtividadesIFractalQueNaoForamInseridasNoClockify(
+				atividadesIfractal, atividadesClockify);
 		
-//		ClockifyRestService.inserirAtividadesClockify(atividadesParaInserir, apiKey);
-
-//		ExcelService.updatePlanilha(nomeColaborador, atividadesClockify, ano, mes);
+		ClockifyRestService.inserirAtividadesClockify(atividadesParaInserir, apiKey);
+		
+		ExcelFacade excelFacade= new ExcelFacadeImpl();
+		excelFacade.updatePlanilha(nomeColaborador, atividadesClockify, ano, mes);
 
 	}
 

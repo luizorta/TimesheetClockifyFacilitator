@@ -66,7 +66,7 @@ public class DateUtils {
 
 		List<LocalDate> dates = new ArrayList<LocalDate>();
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MONTH, mes);
+		cal.set(Calendar.MONTH, mes-1);
 		cal.set(Calendar.YEAR, ano);
 		int lastDayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
