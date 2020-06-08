@@ -29,30 +29,62 @@ public class DateUtils {
 
 	}
 
-	public static LocalTime getTotalHoras(LocalDate data, ClockifyResponse response) {
-		
+	public static void setTotalHorasIFractal(List<Atividade> atividades) {
+
+		LocalTime totalHorasDiaria = LocalTime.of(0, 0);
+
+		for (Atividade atividade : atividades) {
+			
+			LocalTime horario1Entrada = atividade.getHorario1Entrada();
+			LocalTime horario1Saida   = atividade.getHorario1Saida();
+			LocalTime totalHoras1Jornada = LocalTime.of(0, 0);
+			
+			if(horario1Saida != null) {
+				totalHoras1Jornada = horario1Saida.minusHours(horario1Entrada.getHour()).minusMinutes(horario1Entrada.getMinute());
+			}
+			
+			LocalTime horario2Entrada = atividade.getHorario2Entrada();
+			LocalTime horario2Saida   = atividade.getHorario2Saida();
+			LocalTime totalHoras2Jornada = LocalTime.of(0, 0);
+			
+			if(horario2Entrada != null && horario2Saida != null) {
+				totalHoras2Jornada = horario1Saida.minusHours(horario1Entrada.getHour()).minusMinutes(horario1Entrada.getMinute());	
+			}
+
+			totalHorasDiaria = totalHoras1Jornada.plusHours(totalHoras2Jornada.getHour()).plusMinutes(totalHoras2Jornada.getMinute());
+			
+			atividade.setTotalHoras(totalHorasDiaria);
+
+		}
+
+	}
+
+	public static LocalTime getTotalHorasClockify(LocalDate data, ClockifyResponse response) {
+
 		LocalTime totalHorasDiaria = LocalTime.of(0, 0);
 
 		for (Entry entrada : response.getTimeEntries()) {
 
 			String date = entrada.getTimeInterval().getStart().substring(0,
 					entrada.getTimeInterval().getStart().indexOf("T"));
-			
+
 			LocalDate dateToCompare = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 			if (data.isEqual(dateToCompare)) {
-				
-				String strStart     = entrada.getTimeInterval().getStart();
-				strStart            = strStart.substring(strStart.indexOf("T")+1, strStart.indexOf("Z"));
+
+				String strStart = entrada.getTimeInterval().getStart();
+				strStart = strStart.substring(strStart.indexOf("T") + 1, strStart.indexOf("Z"));
 				LocalTime startTime = LocalTime.parse(strStart, DateTimeFormatter.ofPattern("HH:mm:ss"));
-				
-				String strEnd     = entrada.getTimeInterval().getEnd();
-				strEnd            = strEnd.substring(strEnd.indexOf("T")+1, strEnd.indexOf("Z"));
+
+				String strEnd = entrada.getTimeInterval().getEnd();
+				strEnd = strEnd.substring(strEnd.indexOf("T") + 1, strEnd.indexOf("Z"));
 				LocalTime endTime = LocalTime.parse(strEnd, DateTimeFormatter.ofPattern("HH:mm:ss"));
-				
-				LocalTime totalHorasAtividade = endTime.minusHours(startTime.getHour()).minusMinutes(startTime.getMinute());
-				
-				totalHorasDiaria = totalHorasDiaria.plusHours(totalHorasAtividade.getHour()).plusMinutes(totalHorasAtividade.getMinute()).plusSeconds(totalHorasAtividade.getSecond());				
+
+				LocalTime totalHorasAtividade = endTime.minusHours(startTime.getHour())
+						.minusMinutes(startTime.getMinute());
+
+				totalHorasDiaria = totalHorasDiaria.plusHours(totalHorasAtividade.getHour())
+						.plusMinutes(totalHorasAtividade.getMinute()).plusSeconds(totalHorasAtividade.getSecond());
 
 			}
 
@@ -66,7 +98,7 @@ public class DateUtils {
 
 		List<LocalDate> dates = new ArrayList<LocalDate>();
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MONTH, mes-1);
+		cal.set(Calendar.MONTH, mes - 1);
 		cal.set(Calendar.YEAR, ano);
 		int lastDayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
@@ -95,7 +127,8 @@ public class DateUtils {
 
 		String resultado = data;
 		try {
-			resultado = sdf.format(org.apache.commons.lang.time.DateUtils.parseDate(data, new String[] { "dd/MM/yyyy" }));
+			resultado = sdf
+					.format(org.apache.commons.lang.time.DateUtils.parseDate(data, new String[] { "dd/MM/yyyy" }));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -104,7 +137,7 @@ public class DateUtils {
 		return resultado;
 
 	}
-	
+
 	/**
 	 * Valida se um horario é valido
 	 * 

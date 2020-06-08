@@ -59,8 +59,8 @@ public class Execute {
 		
 		ClockifyRestService.inserirAtividadesClockify(atividadesParaInserir, apiKey);
 		
-		ExcelFacade excelFacade= new ExcelFacadeImpl();
-		excelFacade.updatePlanilha(nomeColaborador, atividadesClockify, ano, mes);
+		ExcelFacade excelFacade = new ExcelFacadeImpl();
+		excelFacade.updatePlanilha(nomeColaborador, atividadesIfractal, ano, mes);
 
 	}
 

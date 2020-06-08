@@ -71,7 +71,7 @@ public class ClockifyRestService {
 			LocalDate date = LocalDate.parse(firstDate);
 			atividade.setData(date);
 
-			atividade.setTotalHoras(DateUtils.getTotalHoras(date, response));
+			atividade.setTotalHoras(DateUtils.getTotalHorasClockify(date, response));
 
 			if (atividades.size() >= 1) {
 				Atividade ultimaAtividade = atividades.get(atividades.size() - 1);

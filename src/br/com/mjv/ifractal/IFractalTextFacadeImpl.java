@@ -230,7 +230,7 @@ public class IFractalTextFacadeImpl implements IFractalFacade {
 			}
 		}
 
-		//TODO Pegar total Horas trabalhadas
+		DateUtils.setTotalHorasIFractal(atividades);
 		
 		return atividades;
 
