@@ -4,9 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -21,8 +25,9 @@ import br.com.mjv.dto.Atividade;
 import br.com.mjv.utils.DateUtils;
 
 public class ExcelFacadeImpl implements ExcelFacade {
-	
-	public void updatePlanilha(String nomeColaborador, List<Atividade> atividades, int ano, int mes) throws InvalidFormatException, IOException {
+
+	public void updatePlanilha(String nomeColaborador, List<Atividade> atividades, int ano, int mes)
+			throws InvalidFormatException, IOException {
 
 		File file = new File("entrada.xlsx");
 		FileInputStream fis = new FileInputStream(file);
@@ -58,7 +63,7 @@ public class ExcelFacadeImpl implements ExcelFacade {
 						row = sheet.getRow(cellReference.getRow());
 						cell = row.getCell(cellReference.getCol());
 						cell.setCellType(CellType.STRING);
-						cell.setCellValue(atividade.getTotalHoras() + ":00");
+						cell.setCellValue(atividade.getTotalHoras().toString());
 						// Sets the allignment to the created cell
 						CellUtil.setAlignment(cell, HorizontalAlignment.CENTER);
 
@@ -98,7 +103,11 @@ public class ExcelFacadeImpl implements ExcelFacade {
 		row = sheet.getRow(cellReference.getRow());
 		cell = row.getCell(cellReference.getCol());
 		cell.setCellType(CellType.STRING);
-		cell.setCellValue(DateUtils.getTotalHorasMes(atividades) + ":00");
+
+		String duracaoTotal = DateUtils.getTotalHorasMes(atividades).toString();
+		duracaoTotal = duracaoTotal.replace("PT", "").replace("H", ":").replace("M", "");
+
+		cell.setCellValue(duracaoTotal + ":00");
 
 		// Write the output to the file
 		FileOutputStream fileOut = new FileOutputStream("saida.xlsx");
@@ -107,6 +116,8 @@ public class ExcelFacadeImpl implements ExcelFacade {
 
 		// Closing the workbook
 		workbook.close();
+
+		System.out.println("Timesheet atualizado com sucesso!");
 
 	}
 

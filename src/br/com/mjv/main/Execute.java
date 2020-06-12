@@ -50,17 +50,30 @@ public class Execute {
 
 		List<Atividade> atividadesIfractal = iFractalFacade.loadAtividadesFromIFractal(ano, mes);
 		Collections.sort(atividadesIfractal);
+		System.out.println("Total de atividades no iFractal: " + atividadesIfractal.size());
 
 		List<Atividade> atividadesClockify = ClockifyRestService.carregarAtividadesFromClockify(ano, mes, apiKey);
 		Collections.sort(atividadesClockify);
+		System.out.println("Total de atividades no Clockify: " + atividadesClockify.size());
 
 		List<Atividade> atividadesParaInserir = getListaAtividadesIFractalQueNaoForamInseridasNoClockify(
 				atividadesIfractal, atividadesClockify);
 		
-		ClockifyRestService.inserirAtividadesClockify(atividadesParaInserir, apiKey);
+		System.out.println("====================================  Clockify ====================================");
+		if(atividadesParaInserir.size() == 0) {
+			System.out.println("Não existem atividades para inserir no Clockify");
+		} else {
+			ClockifyRestService.inserirAtividadesClockify(atividadesParaInserir, apiKey);
+			System.out.println(atividadesParaInserir.size() + " atividades inseridas com sucesso!");
+			
+		}
+		System.out.println("===================================================================================");
 		
+		System.out.println("====================================  Excel Timesheet ====================================");
 		ExcelFacade excelFacade = new ExcelFacadeImpl();
-		excelFacade.updatePlanilha(nomeColaborador, atividadesIfractal, ano, mes);
+		excelFacade.updatePlanilha(nomeColaborador, atividadesClockify, ano, mes);
+		System.out.println("==========================================================================================");
+		
 
 	}
 

@@ -3,6 +3,7 @@ package br.com.mjv.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -16,16 +17,16 @@ import br.com.mjv.dto.Atividade;
 
 public class DateUtils {
 
-	public static LocalTime getTotalHorasMes(List<Atividade> atividades) {
-
-		LocalTime totalHorasMes = LocalTime.of(0, 0);
+	public static Duration getTotalHorasMes(List<Atividade> atividades) {
+		
+		Duration duracaoTotal = Duration.ofHours(0);
 
 		for (Atividade atividade : atividades) {
 			LocalTime totalHoras = atividade.getTotalHoras();
-			totalHoras = totalHorasMes.plusHours(totalHoras.getHour()).plusMinutes(totalHoras.getMinute());
+			duracaoTotal = duracaoTotal.plusHours(totalHoras.getHour()).plusMinutes(totalHoras.getMinute());
 		}
 
-		return totalHorasMes;
+		return duracaoTotal;
 
 	}
 
