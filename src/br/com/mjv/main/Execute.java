@@ -2,6 +2,7 @@ package br.com.mjv.main;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +27,10 @@ public class Execute {
 	private static String apiKey;
 
 	public static void main(String[] args) throws IOException, InvalidFormatException, ParseException {
+		
 
+		Duration.parse("PT80H30M");
+		
 		System.out.println("Executando...");
 
 		/*
@@ -52,7 +56,7 @@ public class Execute {
 		Collections.sort(atividadesIfractal);
 		System.out.println("Total de atividades no iFractal: " + atividadesIfractal.size());
 
-		List<Atividade> atividadesClockify = ClockifyRestService.carregarAtividadesFromClockify(ano, mes, apiKey);
+		List<Atividade> atividadesClockify = ClockifyRestService.reportSummary(ano, mes, apiKey);
 		Collections.sort(atividadesClockify);
 		System.out.println("Total de atividades no Clockify: " + atividadesClockify.size());
 

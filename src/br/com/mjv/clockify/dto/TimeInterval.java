@@ -1,36 +1,38 @@
 package br.com.mjv.clockify.dto;
 
-public class TimeInterval {
-	
-	
-	private String start;
-	
-	private String end;
-	
-	private String duration;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
-	public String getStart() {
+public class TimeInterval {
+
+	private LocalDateTime start;
+
+	private LocalDateTime end;
+
+	private Duration duration;
+
+	public LocalDateTime getStart() {
 		return start;
 	}
 
-	public String getEnd() {
+	public LocalDateTime getEnd() {
 		return end;
 	}
 
-	public String getDuration() {
+	public Duration getDuration() {
 		return duration;
 	}
 
 	public void setStart(String start) {
-		this.start = start;
+		this.start = LocalDateTime.parse(start.replace("Z", ""));
 	}
 
 	public void setEnd(String end) {
-		this.end = end;
+		this.end = LocalDateTime.parse(end.replace("Z", ""));
 	}
 
 	public void setDuration(String duration) {
-		this.duration = duration;
+		this.duration = Duration.parse(duration);
 	}
 
 }

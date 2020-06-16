@@ -3,6 +3,7 @@ package br.com.mjv.ifractal;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -95,7 +96,8 @@ public class IFractalHTMLFacadeImpl implements IFractalFacade {
 					String totalHoras = strCurrentLine.substring(beginIndex, endIndex);
 
 					if (DateUtils.validarHorario(totalHoras))
-						atividade.setTotalHoras(LocalTime.parse(totalHoras, DateTimeFormatter.ofPattern("HH:mm")));
+						atividade.setTotalHoras(Duration.parse(totalHoras));
+						//atividade.setTotalHoras(LocalTime.parse(totalHoras, DateTimeFormatter.ofPattern("HH:mm")));
 
 					if (DateUtils.validarDataAtividade(atividade))
 						atividades.add(atividade);

@@ -1,5 +1,7 @@
 package br.com.mjv.clockify.dto;
 
+import java.time.Duration;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -11,6 +13,16 @@ public class Entry {
 	
 	private Project project;
 	
+	private Duration duration;
+	
+
+	public Duration getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Duration duration) {
+		this.duration = duration;
+	}
 
 	public Project getProject() {
 		return project;

@@ -5,8 +5,8 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ClockifyResponse {
-		
+public class TimeEntriesResponse {
+	
 	private List<Entry> timeEntries;
 
 	public List<Entry> getTimeEntries() {

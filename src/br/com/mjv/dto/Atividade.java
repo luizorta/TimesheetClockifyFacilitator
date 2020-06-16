@@ -1,12 +1,13 @@
 package br.com.mjv.dto;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Atividade implements Comparable<Atividade> {
 
 	private LocalDate data;
-	private LocalTime totalHoras;
+	private Duration totalHoras;
 	private String descricao;
 	private String nomeProjeto;
 	
@@ -20,7 +21,7 @@ public class Atividade implements Comparable<Atividade> {
 		
 	}
 
-	public Atividade(LocalDate data, LocalTime totalHoras, String descricao, String nomeProjeto) {
+	public Atividade(LocalDate data, Duration totalHoras, String descricao, String nomeProjeto) {
 		this.data = data;
 		this.totalHoras = totalHoras;
 		this.descricao = descricao;
@@ -31,7 +32,7 @@ public class Atividade implements Comparable<Atividade> {
 		return data;
 	}
 
-	public LocalTime getTotalHoras() {
+	public Duration getTotalHoras() {
 		return totalHoras;
 	}
 
@@ -63,7 +64,7 @@ public class Atividade implements Comparable<Atividade> {
 		this.data = data;
 	}
 
-	public void setTotalHoras(LocalTime totalHoras) {
+	public void setTotalHoras(Duration totalHoras) {
 		this.totalHoras = totalHoras;
 	}
 
