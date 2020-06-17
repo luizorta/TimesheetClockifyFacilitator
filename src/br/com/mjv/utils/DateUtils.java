@@ -19,7 +19,7 @@ public class DateUtils {
 		Duration duracaoTotal = Duration.ofHours(0);
 
 		for (Atividade atividade : atividades) {
-			duracaoTotal.plus(atividade.getTotalHoras());
+			duracaoTotal = duracaoTotal.plus(atividade.getTotalHoras());
 		}
 
 		return duracaoTotal;

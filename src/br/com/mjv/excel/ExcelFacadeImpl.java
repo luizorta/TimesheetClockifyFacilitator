@@ -4,13 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -63,7 +60,12 @@ public class ExcelFacadeImpl implements ExcelFacade {
 						row = sheet.getRow(cellReference.getRow());
 						cell = row.getCell(cellReference.getCol());
 						cell.setCellType(CellType.STRING);
-						cell.setCellValue(atividade.getTotalHoras().toString());
+						
+						Duration duration = atividade.getTotalHoras();
+						long s = duration.getSeconds();
+						String duracaoDia = String.format("%d:%02d:%02d", s / 3600, (s % 3600) / 60, (s % 60));
+						
+						cell.setCellValue(duracaoDia);
 						// Sets the allignment to the created cell
 						CellUtil.setAlignment(cell, HorizontalAlignment.CENTER);
 
@@ -104,10 +106,11 @@ public class ExcelFacadeImpl implements ExcelFacade {
 		cell = row.getCell(cellReference.getCol());
 		cell.setCellType(CellType.STRING);
 
-		String duracaoTotal = DateUtils.getTotalHorasMes(atividades).toString();
-		duracaoTotal = duracaoTotal.replace("PT", "").replace("H", ":").replace("M", "");
-
-		cell.setCellValue(duracaoTotal + ":00");
+		Duration duration = DateUtils.getTotalHorasMes(atividades);
+		long s = duration.getSeconds();
+		String duracaoMes = String.format("%d:%02d:%02d", s / 3600, (s % 3600) / 60, (s % 60));
+		
+		cell.setCellValue(duracaoMes);
 
 		// Write the output to the file
 		FileOutputStream fileOut = new FileOutputStream("saida.xlsx");
