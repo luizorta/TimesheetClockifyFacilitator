@@ -97,7 +97,8 @@ public class ClockifyRestService {
 
 	public static void inserirAtividadeClockify(Atividade atividade, String apiKey) {
 
-		String description = "BS | RJ | Saúde | Concierge | [Welcome Home] - Correções/Alterações";
+		String description = "BS | RJ | Saúde | Concierge | [Segunda Opinião Médica] - Desenvolvimento Frontend";
+		//String description = "BS | RJ | Saúde | Concierge | [Welcome Home] - Correções/Alterações";
 		// Concierge
 		String projectId = "5dee5c6dffff90311c84e5b3";
 
@@ -114,11 +115,11 @@ public class ClockifyRestService {
 
 		String seconds = ":00Z";
 
-		LocalDate dataAtividade = atividade.getData();
+		LocalDate dataAtividade   = atividade.getData();
 		LocalTime horario1Entrada = atividade.getHorario1Entrada();
-		LocalTime horario1Saida = atividade.getHorario1Saida();
+		LocalTime horario1Saida   = atividade.getHorario1Saida();
 		LocalTime horario2Entrada = atividade.getHorario2Entrada();
-		LocalTime horario2Saida = atividade.getHorario2Saida();
+		LocalTime horario2Saida   = atividade.getHorario2Saida();
 		LocalTime horarioSaidaAlmoco = LocalTime.of(12, 0);
 		LocalTime horarioVoltaAlmoco = LocalTime.of(13, 0);
 

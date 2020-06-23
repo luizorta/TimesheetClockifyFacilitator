@@ -116,14 +116,15 @@ public class IFractalTextFacadeImpl implements IFractalFacade {
 					atividade.setData(date);
 
 					
-					
+					// Elimina os caracteres antes da primeira data de entrada
+					strCurrentLine = strCurrentLine.substring(15, strCurrentLine.length());
 					
 					/****************************************************
 					 *                  1a ENTRADA
 					 *                 
 					 * Se nao encontrar Deve ignorar e sair
 					 ***************************************************/
-					beginIndex = strCurrentLine.indexOf("e	") - 5;
+					beginIndex = strCurrentLine.indexOf("e") - 5;
 					endIndex = beginIndex + 5;
 
 					if (beginIndex < 0) {
@@ -137,13 +138,8 @@ public class IFractalTextFacadeImpl implements IFractalFacade {
 					if (DateUtils.validarHorario(horario1Entrada))
 						atividade.setHorario1Entrada(LocalTime.parse(horario1Entrada, DateTimeFormatter.ofPattern("HH:mm")));
 					
-					
-					
-					
-					
-
-					// Elimina os caracteres antes da primeira data de entrada
-					strCurrentLine = strCurrentLine.substring(strCurrentLine.indexOf("e	") + 1);
+					// Elimina a data que foi utilizada
+					strCurrentLine = strCurrentLine.substring(7, strCurrentLine.length());
 					
 					
 					/****************************************************
@@ -151,7 +147,7 @@ public class IFractalTextFacadeImpl implements IFractalFacade {
 					 *                   
 					 * Se nao encontrar Deve ignorar e sair
 					 ***************************************************/
-					beginIndex = strCurrentLine.indexOf("e	") - 5;
+					beginIndex = strCurrentLine.indexOf("e") - 5;
 					endIndex = beginIndex + 5;
 
 					if (beginIndex < 0) {
@@ -164,18 +160,15 @@ public class IFractalTextFacadeImpl implements IFractalFacade {
 					if (DateUtils.validarHorario(horario1Saida))
 						atividade.setHorario1Saida(LocalTime.parse(horario1Saida, DateTimeFormatter.ofPattern("HH:mm")));
 					
-					
-					
-
-					// Elimina os caracteres antes da primeira data de entrada
-					strCurrentLine = strCurrentLine.substring(strCurrentLine.indexOf("e	") + 1);
+					// Elimina a data que foi utilizada
+					strCurrentLine = strCurrentLine.substring(7, strCurrentLine.length());
 
 					/****************************************************
 					 *                   2a ENTRADA
 					 *                
 					 * Se nao encontrar Deve ignorar e sair
 					 ***************************************************/
-					beginIndex = strCurrentLine.indexOf("e	") - 5;
+					beginIndex = strCurrentLine.indexOf("e") - 5;
 					endIndex = beginIndex + 5;
 
 					if (beginIndex < 0) {
@@ -189,11 +182,8 @@ public class IFractalTextFacadeImpl implements IFractalFacade {
 						atividade.setHorario2Entrada(LocalTime.parse(horario2Entrada, DateTimeFormatter.ofPattern("HH:mm")));
 					
 					
-					
-					
-					// Elimina os caracteres antes da primeira data de entrada
-					strCurrentLine = strCurrentLine.substring(strCurrentLine.indexOf("e	") + 1);
-					
+					// Elimina a data que foi utilizada
+					strCurrentLine = strCurrentLine.substring(7, strCurrentLine.length());
 					
 					
 					/****************************************************
@@ -201,7 +191,7 @@ public class IFractalTextFacadeImpl implements IFractalFacade {
 					 *                
 					 * Se nao encontrar Deve ignorar e sair
 					 ***************************************************/
-					beginIndex = strCurrentLine.indexOf("e	") - 5;
+					beginIndex = strCurrentLine.indexOf("e") - 5;
 					endIndex = beginIndex + 5;
 					
 					if (beginIndex < 0) {
