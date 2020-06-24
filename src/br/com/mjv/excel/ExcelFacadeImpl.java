@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -113,7 +114,7 @@ public class ExcelFacadeImpl implements ExcelFacade {
 		cell.setCellValue(duracaoMes);
 
 		// Write the output to the file
-		FileOutputStream fileOut = new FileOutputStream("saida.xlsx");
+		FileOutputStream fileOut = new FileOutputStream("saida-" + new Date().getTime() + ".xlsx");
 		workbook.write(fileOut);
 		fileOut.close();
 

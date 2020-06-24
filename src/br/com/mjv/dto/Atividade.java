@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Atividade implements Comparable<Atividade> {
+	
 
+	private String timeEntryID;
 	private LocalDate data;
 	private Duration totalHoras;
 	private String descricao;
@@ -28,6 +30,14 @@ public class Atividade implements Comparable<Atividade> {
 		this.nomeProjeto = nomeProjeto;
 	}
 
+	public String getTimeEntryID() {
+		return timeEntryID;
+	}
+
+	public void setTimeEntryID(String timeEntryID) {
+		this.timeEntryID = timeEntryID;
+	}
+	
 	public LocalDate getData() {
 		return data;
 	}

@@ -24,15 +24,25 @@ public class TimeInterval {
 	}
 
 	public void setStart(String start) {
-		this.start = LocalDateTime.parse(start.replace("Z", ""));
+		
+		if(start != null) {
+			this.start = LocalDateTime.parse(start.replace("Z", ""));
+		}
+		
 	}
 
 	public void setEnd(String end) {
-		this.end = LocalDateTime.parse(end.replace("Z", ""));
+		if(end != null) {
+			this.end = LocalDateTime.parse(end.replace("Z", ""));
+		}
+		
+		
 	}
 
 	public void setDuration(String duration) {
-		this.duration = Duration.parse(duration);
+		if(duration != null) {
+			this.duration = Duration.parse(duration);
+		}
 	}
 
 }

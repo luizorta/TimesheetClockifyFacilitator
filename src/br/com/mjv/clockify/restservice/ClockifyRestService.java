@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ws.rs.client.Client;
@@ -16,14 +18,15 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.mjv.clockify.dto.ReportSummaryResponse;
-import br.com.mjv.clockify.dto.TimeEntriesResponse;
-import br.com.mjv.clockify.dto.User;
 import br.com.mjv.clockify.dto.Entry;
+import br.com.mjv.clockify.dto.ReportSummaryResponse;
+import br.com.mjv.clockify.dto.User;
 import br.com.mjv.dto.Atividade;
+import br.com.mjv.utils.DataAtividadeComparator;
 import br.com.mjv.utils.DateUtils;
 
 public class ClockifyRestService {
@@ -70,7 +73,7 @@ public class ClockifyRestService {
 			LocalDate dataAtividade = resultado.getTimeInterval().getStart().toLocalDate();
 			atividade.setData(dataAtividade);
 			atividade.setTotalHoras(DateUtils.getTotalHorasClockify(dataAtividade, response.getTimeEntries()));
-			
+
 			if (atividades.size() >= 1) {
 				Atividade ultimaAtividade = atividades.get(atividades.size() - 1);
 
@@ -98,7 +101,8 @@ public class ClockifyRestService {
 	public static void inserirAtividadeClockify(Atividade atividade, String apiKey) {
 
 		String description = "BS | RJ | Saúde | Concierge | [Segunda Opinião Médica] - Desenvolvimento Frontend";
-		//String description = "BS | RJ | Saúde | Concierge | [Welcome Home] - Correções/Alterações";
+		// String description = "BS | RJ | Saúde | Concierge | [Welcome Home] -
+		// Correções/Alterações";
 		// Concierge
 		String projectId = "5dee5c6dffff90311c84e5b3";
 
@@ -106,7 +110,7 @@ public class ClockifyRestService {
 
 		String startDate;
 		String endDate;
-		
+
 		String body = "{ \n  \"description\": \"" + description + "\",\n  \"projectId\": \"" + projectId + "\",\n";
 		String initBody = body;
 
@@ -115,11 +119,11 @@ public class ClockifyRestService {
 
 		String seconds = ":00Z";
 
-		LocalDate dataAtividade   = atividade.getData();
+		LocalDate dataAtividade = atividade.getData();
 		LocalTime horario1Entrada = atividade.getHorario1Entrada();
-		LocalTime horario1Saida   = atividade.getHorario1Saida();
+		LocalTime horario1Saida = atividade.getHorario1Saida();
 		LocalTime horario2Entrada = atividade.getHorario2Entrada();
-		LocalTime horario2Saida   = atividade.getHorario2Saida();
+		LocalTime horario2Saida = atividade.getHorario2Saida();
 		LocalTime horarioSaidaAlmoco = LocalTime.of(12, 0);
 		LocalTime horarioVoltaAlmoco = LocalTime.of(13, 0);
 
@@ -264,42 +268,61 @@ public class ClockifyRestService {
 		}
 	}
 
-	public static List<Atividade> timeEntries(int ano, int mes, String apiKey, User user) throws IOException {
-		String url = "https://api.clockify.me/api/workspaces/" + MJV_WORKSPACE + "/user/" + user.getId() + "/time-entries/";
+	public static void deleteTimeEntry(String id, String apiKey) {
+		String url = "https://api.clockify.me/api/v1/workspaces/" + MJV_WORKSPACE + "/time-entries/" + id;
 
-		List<Atividade> atividades = new ArrayList<Atividade>();
-
-		
-		String startDate = ano + "-" + StringUtils.leftPad(String.valueOf(mes), 2, '0') + "-01T00:00:00Z";
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MONTH, mes - 1);
-		cal.set(Calendar.YEAR, ano);
-		int lastDayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-		String endDate = ano + "-" + StringUtils.leftPad(String.valueOf(mes), 2, '0') + "-" + lastDayOfMonth + "T23:59:59Z";
-		
-		
 		Client client = ClientBuilder.newClient();
 		WebTarget resource = client.target(url.toString());
-		resource.queryParam("start", startDate);
-		resource.queryParam("end", endDate);
 
 		Invocation.Builder request = resource.request();
 		request.header("X-Api-Key", apiKey);
 		request.accept(MediaType.APPLICATION_JSON_TYPE);
 
+		request.delete();
 
-		TimeEntriesResponse response = request.get().readEntity(TimeEntriesResponse.class);
+	}
 
-		for (Entry resultado : response.getTimeEntries()) {
+	public static List<Atividade> timeEntries(int ano, int mes, String apiKey, User user) throws IOException {
+		String url = "https://api.clockify.me/api/v1/workspaces/" + MJV_WORKSPACE + "/user/" + user.getId()
+				+ "/time-entries/";
+
+		List<Atividade> atividades = new ArrayList<Atividade>();
+
+		String startDate = ano + "-" + StringUtils.leftPad(String.valueOf(mes), 2, '0') + "-01T00:00:00Z";
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MONTH, mes - 1);
+		cal.set(Calendar.YEAR, ano);
+		int lastDayOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+		String endDate = ano + "-" + StringUtils.leftPad(String.valueOf(mes), 2, '0') + "-" + lastDayOfMonth
+				+ "T23:59:59Z";
+
+		Client client = ClientBuilder.newClient();
+		WebTarget resource = client.target(url.toString());
+		resource = resource.queryParam("start", startDate);
+		resource = resource.queryParam("end", endDate);
+
+		Invocation.Builder request = resource.request();
+		request.header("X-Api-Key", apiKey);
+		request.accept(MediaType.APPLICATION_JSON_TYPE);
+
+		String json = request.get().readEntity(String.class);
+		ObjectMapper mapper = new ObjectMapper();
+
+		List<Entry> entries = mapper.readValue(json, new TypeReference<List<Entry>>() {
+		});
+
+		for (Entry entry : entries) {
 
 			Atividade atividade = new Atividade();
-			atividade.setDescricao(resultado.getDescription() != null ? resultado.getDescription() : "");
-			atividade.setNomeProjeto(resultado.getProject() != null ? resultado.getProject().getName() : "");
+			atividade.setDescricao(entry.getDescription() != null ? entry.getDescription() : "");
+			atividade.setNomeProjeto(entry.getProject() != null ? entry.getProject().getName() : "");
 
-			LocalDate dataAtividade = resultado.getTimeInterval().getStart().toLocalDate();
+			LocalDate dataAtividade = entry.getTimeInterval().getStart().toLocalDate();
 			atividade.setData(dataAtividade);
 
-			atividade.setTotalHoras(DateUtils.getTotalHorasClockify(dataAtividade, response.getTimeEntries()));
+			atividade.setTotalHoras(DateUtils.getTotalHorasClockify(dataAtividade, entries));
+			
+			atividade.setTimeEntryID(entry.getId());
 
 			if (atividades.size() >= 1) {
 				Atividade ultimaAtividade = atividades.get(atividades.size() - 1);
@@ -315,4 +338,5 @@ public class ClockifyRestService {
 
 		return atividades;
 	}
+
 }

@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Entry {
 	
+	private String id;
+
+
 	private String description;
 	
 	private TimeInterval timeInterval;
@@ -15,6 +18,15 @@ public class Entry {
 	
 	private Duration duration;
 	
+	
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public Duration getDuration() {
 		return duration;

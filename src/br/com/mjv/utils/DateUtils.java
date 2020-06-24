@@ -70,7 +70,9 @@ public class DateUtils {
 		for (Entry entry : entries) {
 
 			if (data.isEqual(entry.getTimeInterval().getStart().toLocalDate())) {
-				totalHorasDiaria = totalHorasDiaria.plus(entry.getTimeInterval().getDuration());
+				if(entry.getTimeInterval().getDuration()!=null) {
+					totalHorasDiaria = totalHorasDiaria.plus(entry.getTimeInterval().getDuration());
+				}
 			}
 
 		}

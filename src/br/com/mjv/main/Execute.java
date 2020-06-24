@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
+import br.com.mjv.clockify.dto.User;
 import br.com.mjv.clockify.restservice.ClockifyRestService;
 import br.com.mjv.dto.Atividade;
 import br.com.mjv.excel.ExcelFacade;
@@ -56,9 +57,33 @@ public class Execute {
 		Collections.sort(atividadesIfractal);
 		System.out.println("Total de atividades no iFractal: " + atividadesIfractal.size());
 
-		List<Atividade> atividadesClockify = ClockifyRestService.reportSummary(ano, mes, apiKey);
+		User user = new User();
+		user.setId("5dc07145b36ea8270fcf00c7");
+		
+		
+		/*
+		 * Busca todas as entradas para o mes atual
+		 */
+		List<Atividade> atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user);
+		//List<Atividade> atividadesClockify = ClockifyRestService.reportSummary(ano, mes, apiKey);
+		//Collections.sort(atividadesClockify);
+		//System.out.println("Total de atividades no Clockify: " + atividadesClockify.size());
+		
+		/*
+		 * Apaga atividade que estiver aberta
+		 */
+		removerAtividadeClockifyEmAndamento(atividadesClockify);
+		
+		
+		/*
+		 * Busca novamente as atividades que estarão fechadas agora
+		 */
+		atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user);
+		//List<Atividade> atividadesClockify = ClockifyRestService.reportSummary(ano, mes, apiKey);
 		Collections.sort(atividadesClockify);
 		System.out.println("Total de atividades no Clockify: " + atividadesClockify.size());
+		
+		
 
 		List<Atividade> atividadesParaInserir = getListaAtividadesIFractalQueNaoForamInseridasNoClockify(
 				atividadesIfractal, atividadesClockify);
@@ -93,6 +118,10 @@ public class Execute {
 
 			for (Atividade atividadeClockify : atividadesClockify) {
 
+				/*
+				 * Testa se existe uma data igual cadastrada no iFractal e no Clockify
+				 * (portanto não deve inserir no clockify)
+				 */
 				if (atividadeIFractal.getData().isEqual(atividadeClockify.getData())) {
 					findIt = true;
 					break;
@@ -108,6 +137,16 @@ public class Execute {
 
 		return resultado;
 
+	}
+	
+	private static void removerAtividadeClockifyEmAndamento(List<Atividade> atividades) {
+		
+		for(Atividade atividade: atividades) {
+			if(atividade.getTotalHoras().isZero()) {
+				ClockifyRestService.deleteTimeEntry(atividade.getTimeEntryID(), apiKey);
+			}
+		}
+		
 	}
 
 }
