@@ -204,6 +204,8 @@ public class IFractalTextFacadeImpl implements IFractalFacade {
 					String horario2Saida = strCurrentLine.substring(beginIndex, endIndex);
 					if(DateUtils.validarHorario(horario2Saida))
 						atividade.setHorario2Saida(LocalTime.parse(horario2Saida, DateTimeFormatter.ofPattern("HH:mm")));
+					
+					atividades.add(atividade);
 
 				}
 
