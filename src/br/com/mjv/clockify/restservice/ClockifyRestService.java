@@ -5,8 +5,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.ws.rs.client.Client;
@@ -26,7 +24,6 @@ import br.com.mjv.clockify.dto.Entry;
 import br.com.mjv.clockify.dto.ReportSummaryResponse;
 import br.com.mjv.clockify.dto.User;
 import br.com.mjv.dto.Atividade;
-import br.com.mjv.utils.DataAtividadeComparator;
 import br.com.mjv.utils.DateUtils;
 
 public class ClockifyRestService {
