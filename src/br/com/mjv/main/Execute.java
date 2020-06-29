@@ -65,9 +65,6 @@ public class Execute {
 		 * Busca todas as entradas para o mes atual
 		 */
 		List<Atividade> atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user);
-		//List<Atividade> atividadesClockify = ClockifyRestService.reportSummary(ano, mes, apiKey);
-		//Collections.sort(atividadesClockify);
-		//System.out.println("Total de atividades no Clockify: " + atividadesClockify.size());
 		
 		/*
 		 * Apaga atividade que estiver aberta
@@ -79,11 +76,8 @@ public class Execute {
 		 * Busca novamente as atividades que estarão fechadas agora
 		 */
 		atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user);
-		//List<Atividade> atividadesClockify = ClockifyRestService.reportSummary(ano, mes, apiKey);
 		Collections.sort(atividadesClockify);
 		System.out.println("Total de atividades no Clockify: " + atividadesClockify.size());
-		
-		
 
 		List<Atividade> atividadesParaInserir = getListaAtividadesIFractalQueNaoForamInseridasNoClockify(
 				atividadesIfractal, atividadesClockify);
@@ -100,6 +94,7 @@ public class Execute {
 		
 		System.out.println("====================================  Excel Timesheet ====================================");
 		ExcelFacade excelFacade = new ExcelFacadeImpl();
+		atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user);
 		excelFacade.updatePlanilha(nomeColaborador, atividadesClockify, ano, mes);
 		System.out.println("==========================================================================================");
 		
