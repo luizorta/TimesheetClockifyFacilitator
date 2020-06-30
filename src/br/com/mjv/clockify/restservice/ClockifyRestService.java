@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.mjv.clockify.dto.Entry;
+import br.com.mjv.clockify.dto.Project;
 import br.com.mjv.clockify.dto.ReportSummaryResponse;
 import br.com.mjv.clockify.dto.User;
 import br.com.mjv.dto.Atividade;
@@ -312,7 +313,9 @@ public class ClockifyRestService {
 
 			Atividade atividade = new Atividade();
 			atividade.setDescricao(entry.getDescription() != null ? entry.getDescription() : "");
-			atividade.setNomeProjeto(entry.getProject() != null ? entry.getProject().getName() : "");
+			
+			Project projeto = getProjectByID(entry.getProjectId(), apiKey);
+			atividade.setNomeProjeto(projeto.getName());
 
 			LocalDate dataAtividade = entry.getTimeInterval().getStart().toLocalDate();
 			atividade.setData(dataAtividade);
@@ -335,5 +338,22 @@ public class ClockifyRestService {
 
 		return atividades;
 	}
+	
+	
+	public static Project getProjectByID(String projectID, String apiKey) throws IOException {
+		String url = "https://api.clockify.me/api/v1/workspaces/" + MJV_WORKSPACE + "/projects/" + projectID;
 
+
+		Client client = ClientBuilder.newClient();
+		WebTarget resource = client.target(url.toString());
+
+		Invocation.Builder request = resource.request();
+		request.header("X-Api-Key", apiKey);
+		request.accept(MediaType.APPLICATION_JSON_TYPE);
+
+		Project response = request.get().readEntity(Project.class);
+		
+		return response;
+
+	}
 }
