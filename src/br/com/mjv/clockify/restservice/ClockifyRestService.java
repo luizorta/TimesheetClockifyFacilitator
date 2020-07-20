@@ -66,7 +66,7 @@ public class ClockifyRestService {
 
 			Atividade atividade = new Atividade();
 			atividade.setDescricao(resultado.getDescription() != null ? resultado.getDescription() : "");
-			atividade.setNomeProjeto(resultado.getProject() != null ? resultado.getProject().getName() : "");
+			atividade.setProjeto(resultado.getProject());
 
 			LocalDate dataAtividade = resultado.getTimeInterval().getStart().toLocalDate();
 			atividade.setData(dataAtividade);
@@ -98,18 +98,12 @@ public class ClockifyRestService {
 
 	public static void inserirAtividadeClockify(Atividade atividade, String apiKey) {
 
-		String description = "BS | RJ | Saúde | Concierge | [Segunda Opinião Médica] - Desenvolvimento Frontend";
-		// String description = "BS | RJ | Saúde | Concierge | [Welcome Home] -
-		// Correções/Alterações";
-		// Concierge
-		String projectId = "5dee5c6dffff90311c84e5b3";
-
 		System.out.println("Inserindo registro(s) referente ao dia: " + atividade.getData());
 
 		String startDate;
 		String endDate;
 
-		String body = "{ \n  \"description\": \"" + description + "\",\n  \"projectId\": \"" + projectId + "\",\n";
+		String body = "{ \n  \"description\": \"" + atividade.getDescricao() + "\",\n  \"projectId\": \"" + atividade.getProjeto().getId() + "\",\n";
 		String initBody = body;
 
 		// Ajuste em horas para enviar ao servidor.
@@ -315,7 +309,7 @@ public class ClockifyRestService {
 			atividade.setDescricao(entry.getDescription() != null ? entry.getDescription() : "");
 			
 			Project projeto = getProjectByID(entry.getProjectId(), apiKey);
-			atividade.setNomeProjeto(projeto.getName());
+			atividade.setProjeto(projeto);
 
 			LocalDate dataAtividade = entry.getTimeInterval().getStart().toLocalDate();
 			atividade.setData(dataAtividade);

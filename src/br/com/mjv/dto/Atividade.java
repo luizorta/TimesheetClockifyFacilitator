@@ -4,6 +4,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import br.com.mjv.clockify.dto.Project;
+
 public class Atividade implements Comparable<Atividade> {
 	
 
@@ -11,7 +13,7 @@ public class Atividade implements Comparable<Atividade> {
 	private LocalDate data;
 	private Duration totalHoras;
 	private String descricao;
-	private String nomeProjeto;
+	private Project projeto;
 	
 	private LocalTime horario1Entrada;
 	private LocalTime horario1Saida;
@@ -23,12 +25,12 @@ public class Atividade implements Comparable<Atividade> {
 		
 	}
 
-	public Atividade(LocalDate data, Duration totalHoras, String descricao, String nomeProjeto) {
-		this.data = data;
-		this.totalHoras = totalHoras;
-		this.descricao = descricao;
-		this.nomeProjeto = nomeProjeto;
-	}
+//	public Atividade(LocalDate data, Duration totalHoras, String descricao, String nomeProjeto) {
+//		this.data = data;
+//		this.totalHoras = totalHoras;
+//		this.descricao = descricao;
+//		this.nomeProjeto = nomeProjeto;
+//	}
 
 	public String getTimeEntryID() {
 		return timeEntryID;
@@ -50,8 +52,8 @@ public class Atividade implements Comparable<Atividade> {
 		return descricao;
 	}
 
-	public String getNomeProjeto() {
-		return nomeProjeto;
+	public Project getProjeto() {
+		return projeto;
 	}
 
 	public LocalTime getHorario1Entrada() {
@@ -82,8 +84,8 @@ public class Atividade implements Comparable<Atividade> {
 		this.descricao = descricao;
 	}
 
-	public void setNomeProjeto(String nomeProjeto) {
-		this.nomeProjeto = nomeProjeto;
+	public void setProjeto(Project projeto) {
+		this.projeto = projeto;
 	}
 
 	public void setHorario1Entrada(LocalTime horario1Entrada) {

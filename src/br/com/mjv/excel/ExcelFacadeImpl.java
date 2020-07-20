@@ -86,7 +86,7 @@ public class ExcelFacadeImpl implements ExcelFacade {
 						row = sheet.getRow(cellReference.getRow());
 						cell = row.getCell(cellReference.getCol());
 						cell.setCellType(CellType.STRING);
-						cell.setCellValue(atividade.getNomeProjeto());
+						cell.setCellValue(atividade.getProjeto().getName());
 						CellUtil.setAlignment(cell, HorizontalAlignment.CENTER);
 					}
 
@@ -120,8 +120,6 @@ public class ExcelFacadeImpl implements ExcelFacade {
 
 		// Closing the workbook
 		workbook.close();
-
-		System.out.println("Timesheet atualizado com sucesso!");
 
 	}
 
