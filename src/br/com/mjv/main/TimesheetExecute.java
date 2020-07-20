@@ -27,12 +27,14 @@ public class TimesheetExecute {
 		/*
 		 * Loading parameters...
 		 */
-		String apiKey = args[0];
-		String nomeColaborador = args[1];
-		int mes = Integer.parseInt(args[2]);
-		int ano = Integer.parseInt(args[3]);
+		String apiKey      = args[0];
+		String userName    = args[1];
+		String userId      = args[6];
+		
+		int mes            = Integer.parseInt(args[2]);
+		int ano            = Integer.parseInt(args[3]);
 		String description = args[4];
-		String projectId = args[5];
+		String projectId   = args[5];
 		
 		
 		Atividade atividade = new Atividade();
@@ -42,15 +44,19 @@ public class TimesheetExecute {
 		projeto.setId(projectId);
 		atividade.setProjeto(projeto);
 		
+		User user = new User();
+		user.setName(userName);
+		user.setId(userId);
+		
 		
 		TimesheetExecute tsE = new TimesheetExecute();
-		tsE.iniciarProcesso(atividade, apiKey, mes, ano, nomeColaborador);
+		tsE.iniciarProcesso(atividade, apiKey, mes, ano, user);
 
 		Log.logDebug("Processo finalizado.");
 
 	}
 
-	private void iniciarProcesso(Atividade atividade, String apiKey, int mes, int ano, String nomeColaborador) {
+	private void iniciarProcesso(Atividade atividade, String apiKey, int mes, int ano, User user) {
 
 		// IFractalFacade iFractalFacade = new IFractalHTMLFacadeImpl();
 		IFractalFacade iFractalFacade = new IFractalTextFacadeImpl();
@@ -65,17 +71,17 @@ public class TimesheetExecute {
 
 		String periodo = mes + "/" + ano;
 
-		User user = new User();
-		user.setId("5dc07145b36ea8270fcf00c7");
+		
 
 		Log.logDebug("====================================  Clockify ====================================");
 		Log.logDebug("Buscando TODAS as entradas para o período de " + periodo + "...");
+		
 		/*
-		 * Busca todas as entradas para o mes atual
+		 * BUSCA TODAS ENTRADAS NO MES ATUAL
 		 */
 		List<Atividade> atividadesClockify = null;
 		try {
-			atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user);
+			atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user, false);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,18 +89,20 @@ public class TimesheetExecute {
 		Log.logDebug("Entradas recuperadas com sucesso!");
 
 		Log.logDebug("Removendo as entradas EM ANDAMENTO...");
+		
 		/*
-		 * Apaga atividade que estiver aberta
+		 * APAGA ATIVIDADES EM ANDAMENTO
 		 */
 		removerAtividadeClockifyEmAndamento(atividadesClockify, apiKey);
 		Log.logDebug("Entradas EM ANDAMENTO removidas com sucesso!");
 
 		Log.logDebug("Buscando as entradas FECHADAS...");
+		
 		/*
-		 * Busca novamente as atividades que estarão fechadas agora
+		 * BUSCA TODAS ATIVIDADE FECHADAS
 		 */
 		try {
-			atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user);
+			atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user, true);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -107,6 +115,9 @@ public class TimesheetExecute {
 		List<Atividade> atividadesParaInserir = getListaAtividadesIFractalQueNaoForamInseridasNoClockify(
 				atividadesIfractal, atividadesClockify);
 
+		/*
+		 * INSERE ATIVIDADES CLOCKIFY
+		 */
 		if (atividadesParaInserir.size() == 0) {
 			Log.logDebug("Não existem atividades para inserir no Clockify");
 		} else {
@@ -119,9 +130,12 @@ public class TimesheetExecute {
 		Log.logDebug("===============================  Excel Timesheet ==================================");
 		ExcelFacade excelFacade = new ExcelFacadeImpl();
 
+		/*
+		 * BUSCA TODAS ENTRADAS NO CLOCKIFY
+		 */
 		Log.logDebug("Buscando as entradas no Clockify para o período de " + periodo + "...");
 		try {
-			atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user);
+			atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user, true);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -129,8 +143,12 @@ public class TimesheetExecute {
 		Log.logDebug("Entradas recuperadas com sucesso!");
 
 		Log.logDebug("Preenchendo a planilha timesheet para o período de " + periodo);
+		
+		/*
+		 * ATUALIZA PLANILHA EXCEL
+		 */
 		try {
-			excelFacade.updatePlanilha(nomeColaborador, atividadesClockify, ano, mes);
+			excelFacade.updatePlanilha(user.getName(), atividadesClockify, ano, mes);
 		} catch (InvalidFormatException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

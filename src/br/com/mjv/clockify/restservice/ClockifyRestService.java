@@ -274,7 +274,7 @@ public class ClockifyRestService {
 
 	}
 
-	public static List<Atividade> timeEntries(int ano, int mes, String apiKey, User user) throws IOException {
+	public static List<Atividade> timeEntries(int ano, int mes, String apiKey, User user, boolean buscarInfosProjeto) throws IOException {
 		String url = "https://api.clockify.me/api/v1/workspaces/" + MJV_WORKSPACE + "/user/" + user.getId()
 				+ "/time-entries/";
 
@@ -300,16 +300,17 @@ public class ClockifyRestService {
 		String json = request.get().readEntity(String.class);
 		ObjectMapper mapper = new ObjectMapper();
 
-		List<Entry> entries = mapper.readValue(json, new TypeReference<List<Entry>>() {
-		});
+		List<Entry> entries = mapper.readValue(json, new TypeReference<List<Entry>>() {});
 
 		for (Entry entry : entries) {
 
 			Atividade atividade = new Atividade();
 			atividade.setDescricao(entry.getDescription() != null ? entry.getDescription() : "");
 			
-			Project projeto = getProjectByID(entry.getProjectId(), apiKey);
-			atividade.setProjeto(projeto);
+			if(buscarInfosProjeto) {
+				Project projeto = getProjectByID(entry.getProjectId(), apiKey);
+				atividade.setProjeto(projeto);
+			}
 
 			LocalDate dataAtividade = entry.getTimeInterval().getStart().toLocalDate();
 			atividade.setData(dataAtividade);
