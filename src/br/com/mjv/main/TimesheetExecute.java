@@ -102,7 +102,7 @@ public class TimesheetExecute {
 		 * BUSCA TODAS ATIVIDADE FECHADAS
 		 */
 		try {
-			atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user, true);
+			atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user, false);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -113,7 +113,7 @@ public class TimesheetExecute {
 		Log.logDebug("Total de atividades no Clockify: " + atividadesClockify.size());
 
 		List<Atividade> atividadesParaInserir = getListaAtividadesIFractalQueNaoForamInseridasNoClockify(
-				atividadesIfractal, atividadesClockify);
+				atividadesIfractal, atividadesClockify, apiKey, atividade.getProjeto());
 
 		/*
 		 * INSERE ATIVIDADES CLOCKIFY
@@ -159,7 +159,7 @@ public class TimesheetExecute {
 	}
 
 	private static List<Atividade> getListaAtividadesIFractalQueNaoForamInseridasNoClockify(
-			List<Atividade> atividadesIfractal, List<Atividade> atividadesClockify) {
+			List<Atividade> atividadesIfractal, List<Atividade> atividadesClockify, String apiKey, Project projeto) {
 
 		List<Atividade> resultado = new ArrayList<Atividade>();
 		boolean findIt = false;
@@ -170,7 +170,9 @@ public class TimesheetExecute {
 
 			for (Atividade atividadeClockify : atividadesClockify) {
 				
-				atividadeIFractal.setProjeto(atividadeClockify.getProjeto());
+				/*
+				 * Pega a descrição da ultima atividade
+				 */
 				atividadeIFractal.setDescricao(atividadeClockify.getDescricao());
 
 				/*
@@ -185,6 +187,7 @@ public class TimesheetExecute {
 			}
 
 			if (!findIt) {
+				atividadeIFractal.setProjeto(projeto);
 				resultado.add(atividadeIFractal);
 			}
 
