@@ -1,12 +1,9 @@
-package br.com.mjv.main;
+package br.com.mjv.control;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import br.com.mjv.clockify.dto.Project;
 import br.com.mjv.clockify.dto.User;
@@ -18,52 +15,17 @@ import br.com.mjv.ifractal.IFractalFacade;
 import br.com.mjv.ifractal.IFractalTextFacadeImpl;
 import br.com.mjv.utils.Log;
 
-public class TimesheetExecute {
+public class TimesheetControl {
 
-	public static void main(String[] args) throws IOException, InvalidFormatException, ParseException {
+	public byte[] iniciarProcesso(Atividade atividade, String apiKey, int mes, int ano, User user, String content) {
 
 		Log.logDebug("Executando...");
-		
-		/*
-		 * Loading parameters...
-		 */
-		String apiKey      = args[0];
-		String userName    = args[1];
-		String userId      = args[6];
-		
-		int mes            = Integer.parseInt(args[2]);
-		int ano            = Integer.parseInt(args[3]);
-		String description = args[4];
-		String projectId   = args[5];
-		
-		
-		Atividade atividade = new Atividade();
-		atividade.setDescricao(description);
-		
-		Project projeto = new Project();
-		projeto.setId(projectId);
-		atividade.setProjeto(projeto);
-		
-		User user = new User();
-		user.setName(userName);
-		user.setId(userId);
-		
-		
-		TimesheetExecute tsE = new TimesheetExecute();
-		tsE.iniciarProcesso(atividade, apiKey, mes, ano, user);
-
-		Log.logDebug("Processo finalizado.");
-
-	}
-
-	private void iniciarProcesso(Atividade atividade, String apiKey, int mes, int ano, User user) {
-
 		// IFractalFacade iFractalFacade = new IFractalHTMLFacadeImpl();
 		IFractalFacade iFractalFacade = new IFractalTextFacadeImpl();
 
 		Log.logDebug("====================================  iFractal ====================================");
 		Log.logDebug("Carregando atividades no iFractal...");
-		List<Atividade> atividadesIfractal = iFractalFacade.loadAtividadesFromIFractal(ano, mes);
+		List<Atividade> atividadesIfractal = iFractalFacade.loadAtividadesFromIFractal(content, ano, mes);
 		Log.logDebug("Atividades carregadas com sucesso!");
 		Collections.sort(atividadesIfractal);
 		Log.logDebug("Total de atividades: " + atividadesIfractal.size());
@@ -112,8 +74,11 @@ public class TimesheetExecute {
 		Collections.sort(atividadesClockify);
 		Log.logDebug("Total de atividades no Clockify: " + atividadesClockify.size());
 
+		/*
+		 * MONTA A LISTA COM AS ATIVIDADES A SEREM INSERIDAS
+		 */
 		List<Atividade> atividadesParaInserir = getListaAtividadesIFractalQueNaoForamInseridasNoClockify(
-				atividadesIfractal, atividadesClockify, apiKey, atividade.getProjeto());
+				atividadesIfractal, atividadesClockify, apiKey, atividade.getProjeto(), atividade.getDescricao());
 
 		/*
 		 * INSERE ATIVIDADES CLOCKIFY
@@ -144,22 +109,29 @@ public class TimesheetExecute {
 
 		Log.logDebug("Preenchendo a planilha timesheet para o período de " + periodo);
 		
+		byte[] bytes = null;
+
 		/*
 		 * ATUALIZA PLANILHA EXCEL
 		 */
 		try {
-			excelFacade.updatePlanilha(user.getName(), atividadesClockify, ano, mes);
-		} catch (InvalidFormatException | IOException e) {
+			bytes = excelFacade.updatePlanilha(user.getName(), atividadesClockify, ano, mes);
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Log.logDebug("Planilha preenchida com sucesso!");
 		Log.logDebug("===================================================================================");
+		
+		Log.logDebug("Processo finalizado.");
+		
+		
+		return bytes;
 
 	}
 
 	private static List<Atividade> getListaAtividadesIFractalQueNaoForamInseridasNoClockify(
-			List<Atividade> atividadesIfractal, List<Atividade> atividadesClockify, String apiKey, Project projeto) {
+			List<Atividade> atividadesIfractal, List<Atividade> atividadesClockify, String apiKey, Project projeto, String descricao) {
 
 		List<Atividade> resultado = new ArrayList<Atividade>();
 		boolean findIt = false;
@@ -173,8 +145,8 @@ public class TimesheetExecute {
 				/*
 				 * Pega a descrição da ultima atividade
 				 */
-				atividadeIFractal.setDescricao(atividadeClockify.getDescricao());
-
+				atividadeIFractal.setDescricao(atividadeClockify.getDescricao());	
+				
 				/*
 				 * Testa se existe uma data igual cadastrada no iFractal e no Clockify (portanto
 				 * não deve inserir no clockify)
@@ -187,6 +159,9 @@ public class TimesheetExecute {
 			}
 
 			if (!findIt) {
+				if(!descricao.isEmpty()) {
+					atividadeIFractal.setDescricao(descricao);
+				}
 				atividadeIFractal.setProjeto(projeto);
 				resultado.add(atividadeIFractal);
 			}

@@ -1,8 +1,10 @@
 package br.com.mjv.ifractal;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -18,10 +20,12 @@ import br.com.mjv.utils.DateUtils;
 public class IFractalTextFacadeImpl implements IFractalFacade {
 
 	
+	public static String PATH = "";
+	
 	/*
 	 * Leitura do Ctrl + A da página
 	 */
-	public List<Atividade> loadAtividadesFromIFractal(int ano, int mes) {
+	public List<Atividade> loadAtividadesFromIFractal(String content, int ano, int mes) {
 
 		List<Atividade> atividades = new ArrayList<Atividade>();
 
@@ -29,8 +33,8 @@ public class IFractalTextFacadeImpl implements IFractalFacade {
 
 		try {
 			String strCurrentLine;
-
-			objReader = new BufferedReader(new FileReader("iFractal.copied"));
+			
+			objReader = new BufferedReader(new StringReader(content));
 
 			String strMes = StringUtils.leftPad(String.valueOf(mes), 2, '0');
 			

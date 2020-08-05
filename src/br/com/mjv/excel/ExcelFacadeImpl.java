@@ -1,15 +1,13 @@
 package br.com.mjv.excel;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
@@ -23,11 +21,13 @@ import br.com.mjv.dto.Atividade;
 import br.com.mjv.utils.DateUtils;
 
 public class ExcelFacadeImpl implements ExcelFacade {
+	
+	String filepath = "/Users/luizorta/Java/MJV/Workspace MJV/TimesheetClockifyFacilitator/WebContent/WEB-INF";
 
-	public void updatePlanilha(String nomeColaborador, List<Atividade> atividades, int ano, int mes)
-			throws InvalidFormatException, IOException {
+	public byte[] updatePlanilha(String nomeColaborador, List<Atividade> atividades, int ano, int mes)
+			throws IOException {
 
-		File file = new File("entrada.xlsx");
+		File file = new File(filepath + "/entrada-08-2020.xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		XSSFSheet sheet = workbook.getSheetAt(0);
@@ -112,15 +112,20 @@ public class ExcelFacadeImpl implements ExcelFacade {
 		String duracaoMes = String.format("%d:%02d:%02d", s / 3600, (s % 3600) / 60, (s % 60));
 		
 		cell.setCellValue(duracaoMes);
-
-		// Write the output to the file
-		FileOutputStream fileOut = new FileOutputStream("saida-" + new Date().getTime() + ".xlsx");
-		workbook.write(fileOut);
-		fileOut.close();
-
+		
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		try {
+		    workbook.write(bos);
+		} finally {
+		    bos.close();
+		}
+		byte[] bytes = bos.toByteArray();
+		
+		workbook.write(bos);
 		// Closing the workbook
 		workbook.close();
-
+		
+		return bytes;
 	}
 
 }

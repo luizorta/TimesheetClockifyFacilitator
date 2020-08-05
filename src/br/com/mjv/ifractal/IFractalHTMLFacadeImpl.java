@@ -23,7 +23,7 @@ public class IFractalHTMLFacadeImpl implements IFractalFacade {
 	 * @param mes
 	 * @return
 	 */
-	public List<Atividade> loadAtividadesFromIFractal(int ano, int mes) {
+	public List<Atividade> loadAtividadesFromIFractal(String content, int ano, int mes) {
 
 		List<Atividade> atividades = new ArrayList<Atividade>();
 
