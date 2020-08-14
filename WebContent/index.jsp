@@ -66,7 +66,7 @@
 				
 				<div class="form-group">
 					<label for="description"> Entry Description (Clockify) </label> 
-					<input value="BS | RJ | Saúde | Concierge | [Alteração das fontes]" type="text" class="form-control" name="description" id="description" />
+					<input value="BS | RJ | Saúde | Concierge | [Reembolso] - Análise da planilha de erros" type="text" class="form-control" name="description" id="description" />
 				</div>
 				
 				<div class="form-group">
@@ -76,20 +76,20 @@
 
 				<div class="form-group">
 
-					<label for="mes-ano"> Mês/Ano (mm/yyyy) * </label> 
+					<label for="mes-ano"> Month (mm/yyyy) * </label> 
 					<input value="08/2020" type="text" class="form-control" name="mes-ano" id="mes-ano" />
 				</div>
 				
 				
 				<div class="form-group">
 
-					<label for="content"> Conteúdo (iFractal) * </label> 
+					<label for="content"> Content (iFractal) * </label> 
 					<textarea class="form-control" id="content" name="content" rows="3"></textarea>
 				</div>
 
 				<div class="form-group" style="text-align: center">
 					<div class="loader"></div>	
-					<button type="submit" class="btn btn-primary">Enviar</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 				
 			</form>
