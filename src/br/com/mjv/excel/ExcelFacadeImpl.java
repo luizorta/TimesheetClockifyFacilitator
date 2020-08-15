@@ -22,14 +22,10 @@ import br.com.mjv.utils.DateUtils;
 
 public class ExcelFacadeImpl implements ExcelFacade {
 	
-	String filepath = "/Users/luizorta/Java/MJV/Workspace MJV/TimesheetClockifyFacilitator/WebContent/WEB-INF";
-
 	public byte[] updatePlanilha(String nomeColaborador, List<Atividade> atividades, int ano, int mes)
 			throws IOException {
 
-		File file = new File(filepath + "/entrada-08-2020.xlsx");
-		FileInputStream fis = new FileInputStream(file);
-		XSSFWorkbook workbook = new XSSFWorkbook(fis);
+		XSSFWorkbook workbook = new XSSFWorkbook(this.getClass().getResourceAsStream("entrada-08-2020.xlsx"));
 		XSSFSheet sheet = workbook.getSheetAt(0);
 
 		/*
