@@ -25,7 +25,7 @@ public class ExcelFacadeImpl implements ExcelFacade {
 	public byte[] updatePlanilha(String nomeColaborador, List<Atividade> atividades, int ano, int mes)
 			throws IOException {
 
-		XSSFWorkbook workbook = new XSSFWorkbook(this.getClass().getResourceAsStream("entrada-08-2020.xlsx"));
+		XSSFWorkbook workbook = new XSSFWorkbook(this.getClass().getResourceAsStream("/entrada-08-2020.xlsx"));
 		XSSFSheet sheet = workbook.getSheetAt(0);
 
 		/*
