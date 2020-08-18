@@ -28,8 +28,6 @@
 		</plugins>
 	</build>
 	<dependencies>
-
-
 		<!-- Used to work with the newer excel file format - `.xlsx` -->
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 		<dependency>
@@ -83,29 +81,6 @@
 			<version>2.22</version>
 		</dependency>
 
-
-
-<!-- 
-
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.11.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.11.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-			<version>2.11.2</version>
-		</dependency> -->
-
-
-
-
 		<!-- https://mvnrepository.com/artifact/edu.uci.ics/crawler4j -->
 		<dependency>
 			<groupId>edu.uci.ics</groupId>
@@ -120,8 +95,5 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
-
-
-
 	</dependencies>
 </project>
