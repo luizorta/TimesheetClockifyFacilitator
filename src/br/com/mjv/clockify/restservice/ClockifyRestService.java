@@ -111,7 +111,10 @@ public class ClockifyRestService {
 
 		String seconds = ":00Z";
 
-		LocalDate dataAtividade = atividade.getData();
+		LocalDate dataInicioAtividade = atividade.getData();
+		LocalDate dataFinalAtividade  = dataInicioAtividade;
+		boolean virouDia = false;
+		
 		LocalTime horario1Entrada = atividade.getHorario1Entrada();
 		LocalTime horario1Saida = atividade.getHorario1Saida();
 		LocalTime horario2Entrada = atividade.getHorario2Entrada();
@@ -127,6 +130,11 @@ public class ClockifyRestService {
 		}
 		if (horario1Saida != null) {
 			horario1Saida = horario1Saida.plusHours(ajuste);
+			
+			if(horario1Saida.isAfter(LocalTime.of(0, 0, 0) ) &&  horario1Saida.isBefore(LocalTime.of(10, 0))){
+				virouDia = true;
+			}
+			
 		}
 		if (horario2Entrada != null) {
 			horario2Entrada = horario2Entrada.plusHours(ajuste);
@@ -140,7 +148,7 @@ public class ClockifyRestService {
 		 * null; horario2Entrada: null; horario2Saida: null;
 		 */
 		if (horario1Entrada != null && horario1Saida == null && horario2Entrada == null && horario2Saida == null) {
-			startDate = atividade.getData() + "T" + horario1Entrada + seconds;
+			startDate = dataInicioAtividade + "T" + horario1Entrada + seconds;
 			body += "  \"start\": \"" + startDate + "\"";
 			body += "\n}";
 			insertTimeEntry(body, apiKey);
@@ -150,17 +158,17 @@ public class ClockifyRestService {
 		if (horario1Entrada != null && horario1Saida != null && horario2Entrada == null && horario2Saida == null) {
 
 			/**
-			 * Horário de entrada até meio dia + entrada às 13:00 até horário de saída
+			 * Horário de entrada até meio dia - Entrada às 13:00 até horário de saída
 			 * horario1Entrada: 08:00; horario1Saida: 17:00; horario2Entrada: null;
 			 * horario2Saida: null;
 			 */
-			if (horario1Saida.getHour() > (12 + ajuste)) {
+			if (horario1Saida.getHour() > (12 + ajuste) || (virouDia)) {
 
 				/*
 				 * Primeiro registro. Horário de entrada até 12:00 (horário de almoço)
 				 */
-				startDate = dataAtividade + "T" + horario1Entrada + seconds;
-				endDate = dataAtividade + "T" + horarioSaidaAlmoco + seconds;
+				startDate = dataInicioAtividade + "T" + horario1Entrada + seconds;
+				endDate = dataFinalAtividade + "T" + horarioSaidaAlmoco + seconds;
 				body += "  \"start\": \"" + startDate + "\",\n" + "  \"end\": \"" + endDate + "\"";
 				body += "\n}";
 				insertTimeEntry(body, apiKey);
@@ -169,8 +177,11 @@ public class ClockifyRestService {
 				/*
 				 * Segundo registro. das 13:00 (volta do almoço) até horário de saída
 				 */
-				startDate = dataAtividade + "T" + horarioVoltaAlmoco + seconds;
-				endDate = dataAtividade + "T" + horario1Saida + seconds;
+				startDate = dataInicioAtividade + "T" + horarioVoltaAlmoco + seconds;
+				if(virouDia) {
+					dataFinalAtividade = atividade.getData().plusDays(1);
+				}
+				endDate = dataFinalAtividade + "T" + horario1Saida + seconds;
 				body += "  \"start\": \"" + startDate + "\",\n" + "  \"end\": \"" + endDate + "\"";
 				body += "\n}";
 				insertTimeEntry(body, apiKey);
@@ -183,8 +194,8 @@ public class ClockifyRestService {
 				 * horario1Entrada: 08:00; horario1Saida: 11:00; horario2Entrada: null;
 				 * horario2Saida: null;
 				 */
-				startDate = dataAtividade + "T" + horario1Entrada + seconds;
-				endDate = dataAtividade + "T" + horario1Saida + seconds;
+				startDate = dataInicioAtividade + "T" + horario1Entrada + seconds;
+				endDate = dataFinalAtividade + "T" + horario1Saida + seconds;
 				body += "  \"start\": \"" + startDate + "\",\n" + "  \"end\": \"" + endDate + "\"";
 				body += "\n}";
 				insertTimeEntry(body, apiKey);
@@ -198,8 +209,8 @@ public class ClockifyRestService {
 			 * Horário de entrada até horário primeira saída horario1Entrada: 08:00;
 			 * horario1Saida: 11:00; horario2Entrada: 13:00; horario2Saida: ?;
 			 */
-			startDate = dataAtividade + "T" + horario1Entrada + seconds;
-			endDate = dataAtividade + "T" + horario1Saida + seconds;
+			startDate = dataInicioAtividade + "T" + horario1Entrada + seconds;
+			endDate = dataFinalAtividade + "T" + horario1Saida + seconds;
 			body += "  \"start\": \"" + startDate + "\",\n" + "  \"end\": \"" + endDate + "\"";
 			body += "\n}";
 			insertTimeEntry(body, apiKey);
@@ -213,7 +224,7 @@ public class ClockifyRestService {
 				/**
 				 * + Horário segunda entrada até horário segunda saída
 				 */
-				startDate = dataAtividade + "T" + horario2Entrada + seconds;
+				startDate = dataInicioAtividade + "T" + horario2Entrada + seconds;
 				body += "  \"start\": \"" + startDate + "\"";
 				body += "\n}";
 				insertTimeEntry(body, apiKey);
@@ -223,8 +234,8 @@ public class ClockifyRestService {
 				 * Horário segunda entrada + horário da segunda saída horario1Entrada: 08:00;
 				 * horario1Saida: 11:00; horario2Entrada: 13:00; horario2Saida: 19:00;
 				 */
-				startDate = dataAtividade + "T" + horario2Entrada + seconds;
-				endDate = dataAtividade + "T" + horario2Saida + seconds;
+				startDate = dataInicioAtividade + "T" + horario2Entrada + seconds;
+				endDate = dataFinalAtividade + "T" + horario2Saida + seconds;
 				body += "  \"start\": \"" + startDate + "\",\n" + "  \"end\": \"" + endDate + "\"";
 				body += "\n}";
 				insertTimeEntry(body, apiKey);

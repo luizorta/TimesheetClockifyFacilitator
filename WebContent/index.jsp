@@ -66,7 +66,7 @@
 				
 				<div class="form-group">
 					<label for="description"> Entry Description (Clockify) </label> 
-					<input value="BS | RJ | Saúde | Concierge | [Reembolso] - Análise da planilha de erros" type="text" class="form-control" name="description" id="description" />
+					<input value="BS | RJ | Saúde | Concierge | [Módulos Administrativos] - Desenvolvimento" type="text" class="form-control" name="description" id="description" />
 				</div>
 				
 				<div class="form-group">
