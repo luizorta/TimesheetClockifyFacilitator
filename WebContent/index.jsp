@@ -77,7 +77,7 @@
 				<div class="form-group">
 
 					<label for="mes-ano"> Month (mm/yyyy) * </label> 
-					<input value="08/2020" type="text" class="form-control" name="mes-ano" id="mes-ano" />
+					<input value="09/2020" type="text" class="form-control" name="mes-ano" id="mes-ano" />
 				</div>
 				
 				

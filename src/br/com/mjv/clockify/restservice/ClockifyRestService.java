@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ws.rs.client.Client;
@@ -312,16 +313,32 @@ public class ClockifyRestService {
 		ObjectMapper mapper = new ObjectMapper();
 
 		List<Entry> entries = mapper.readValue(json, new TypeReference<List<Entry>>() {});
+		
+		HashMap<String, Project> projectMap = new HashMap<String, Project>();
+		
+		if(buscarInfosProjeto) {
+			/*
+			 * Vai buscar os codigos dos projetos e guardar num HashMap.
+			 */
+			for (Entry entry : entries) {
+				
+				String codigo = entry.getProjectId();
+				
+				if(projectMap.get(codigo) == null) {
+					Project projeto = getProjectByID(entry.getProjectId(), apiKey);
+					projectMap.put(codigo, projeto);			
+				}
+				
+			}
+		}
 
 		for (Entry entry : entries) {
 
 			Atividade atividade = new Atividade();
 			atividade.setDescricao(entry.getDescription() != null ? entry.getDescription() : "");
 			
-			if(buscarInfosProjeto) {
-				Project projeto = getProjectByID(entry.getProjectId(), apiKey);
-				atividade.setProjeto(projeto);
-			}
+			Project projeto = projectMap.get(entry.getProjectId());
+			atividade.setProjeto(projeto);
 
 			LocalDate dataAtividade = entry.getTimeInterval().getStart().toLocalDate();
 			atividade.setData(dataAtividade);

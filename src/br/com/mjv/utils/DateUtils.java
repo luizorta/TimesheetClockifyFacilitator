@@ -64,12 +64,14 @@ public class DateUtils {
 	 * @return
 	 */
 	public static Duration getTotalHorasClockify(LocalDate data, List<Entry> entries) {
-
+		
 		Duration totalHorasDiaria = Duration.ZERO;
 
 		for (Entry entry : entries) {
 
-			if (data.isEqual(entry.getTimeInterval().getStart().toLocalDate())) {
+			LocalDate startDate = entry.getTimeInterval().getStart().toLocalDate();
+			
+			if (data.isEqual(startDate)) {
 				if(entry.getTimeInterval().getDuration()!=null) {
 					totalHorasDiaria = totalHorasDiaria.plus(entry.getTimeInterval().getDuration());
 				}

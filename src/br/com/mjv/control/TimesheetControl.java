@@ -33,11 +33,9 @@ public class TimesheetControl {
 
 		String periodo = mes + "/" + ano;
 
-		
-
 		Log.logDebug("====================================  Clockify ====================================");
 		Log.logDebug("Buscando TODAS as entradas para o período de " + periodo + "...");
-		
+
 		/*
 		 * BUSCA TODAS ENTRADAS NO MES ATUAL
 		 */
@@ -51,7 +49,7 @@ public class TimesheetControl {
 		Log.logDebug("Entradas recuperadas com sucesso!");
 
 		Log.logDebug("Removendo as entradas EM ANDAMENTO...");
-		
+
 		/*
 		 * APAGA ATIVIDADES EM ANDAMENTO
 		 */
