@@ -38,7 +38,7 @@ public class TimesheetServlet extends HttpServlet {
 			rd.forward(request, response);  
 		} else if(request.getParameter("action").equalsIgnoreCase("inserir")) {
 			
-			String data = request.getParameter("mes-ano");
+			String data = request.getParameter("mesAno");
 			String nomeColaborador = request.getParameter("userName");
 			
 			int mes = Integer.parseInt(data.substring(0, 2));

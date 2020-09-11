@@ -19,8 +19,38 @@
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
 
-<script>
-	
+<script type="text/javascript">
+    function setCookie(key, value) {
+        var expires = new Date();
+        expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+        document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+    }
+
+    function getCookie(key) {
+        var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+        return keyValue ? keyValue[2] : null;
+    }
+
+    $(document).ready(function() {
+
+        document.form.userName.value = getCookie("userName");
+        document.form.projectId.value = getCookie("projectId");
+        document.form.userId.value = getCookie("userId");
+        document.form.description.value = getCookie("description");
+        document.form.apiKey.value = getCookie("apiKey");
+        document.form.mesAno.value = getCookie("mesAno");
+        
+        $("form").submit(function(){
+        	setCookie("userName", document.form.userName.value);
+        	setCookie("projectId", document.form.projectId.value);
+        	setCookie("userId", document.form.userId.value);
+        	setCookie("description", document.form.description.value);
+        	setCookie("apiKey", document.form.apiKey.value);
+        	setCookie("mesAno", document.form.mesAno.value);
+  		});
+        
+    });
+
 </script>
 
 <style>
@@ -34,7 +64,7 @@
 <div class="container-fluid box onebox">
 	<div class="content">
 		<div class="col-md-12">
-			<form role="form" action="/TSCF/enter" method="post">
+			<form role="form" action="/TSCF/enter" method="post" name="form" id="form">
 			<input type="hidden" name="action" value="inserir"/>
 				
 <!-- 				
@@ -51,33 +81,33 @@
 				
 				<div class="form-group">
 					<label for="userName"> Your full name (Excel) * </label>
-					<input value="LUIZ EDUARDO ARPELAU ORTA" type="text" class="form-control" name="userName" id="userName" />
+					<input type="text" class="form-control" name="userName" id="userName" />
 				</div>
 				
 				<div class="form-group">
 					<label for="projectId"> Project ID (Clockify) * </label> 
-					<input value="5dee5c6dffff90311c84e5b3" type="text" class="form-control" name="projectId" id="projectId" />
+					<input xvalue="5dee5c6dffff90311c84e5b3" type="text" class="form-control" name="projectId" id="projectId" />
 				</div>
 				
 				<div class="form-group">
 					<label for="userId"> User ID (Clockify) * </label> 
-					<input value="5dc07145b36ea8270fcf00c7" type="text" class="form-control" name="userId" id="userId" />
+					<input xvalue="5dc07145b36ea8270fcf00c7" type="text" class="form-control" name="userId" id="userId" />
 				</div>
 				
 				<div class="form-group">
 					<label for="description"> Entry Description (Clockify) </label> 
-					<input value="BS | RJ | Saúde | Concierge | [Módulos Administrativos] - Desenvolvimento" type="text" class="form-control" name="description" id="description" />
+					<input xvalue="BS | RJ | Saúde | Concierge | [Módulos Administrativos] - Desenvolvimento" type="text" class="form-control" name="description" id="description" />
 				</div>
 				
 				<div class="form-group">
 					<label for="apiKey"> Api Key (Clockify) * </label> 
-					<input value="Xg5CvFFchCIa1aT8" type="text" class="form-control" name="apiKey" id="apiKey" />
+					<input xvalue="Xg5CvFFchCIa1aT8" type="text" class="form-control" name="apiKey" id="apiKey" />
 				</div>
 
 				<div class="form-group">
 
 					<label for="mes-ano"> Month (mm/yyyy) * </label> 
-					<input value="09/2020" type="text" class="form-control" name="mes-ano" id="mes-ano" />
+					<input xvalue="09/2020" type="text" class="form-control" name="mesAno" id="mesAno" />
 				</div>
 				
 				
