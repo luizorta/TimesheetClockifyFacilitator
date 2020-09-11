@@ -4,7 +4,9 @@ import java.text.ParseException;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -64,15 +66,19 @@ public class DateUtils {
 	 * @return
 	 */
 	public static Duration getTotalHorasClockify(LocalDate data, List<Entry> entries) {
-		
+
 		Duration totalHorasDiaria = Duration.ZERO;
+
+		if (data.isEqual(LocalDate.of(2020, 8, 14))) {
+			System.out.println("");
+		}
 
 		for (Entry entry : entries) {
 
-			LocalDate startDate = entry.getTimeInterval().getStart().toLocalDate();
-			
-			if (data.isEqual(startDate)) {
-				if(entry.getTimeInterval().getDuration()!=null) {
+			LocalDateTime startDate = entry.getTimeInterval().getStart();
+
+			if (data.isEqual(startDate.toLocalDate())) {
+				if (entry.getTimeInterval().getDuration() != null) {
 					totalHorasDiaria = totalHorasDiaria.plus(entry.getTimeInterval().getDuration());
 				}
 			}
@@ -82,7 +88,6 @@ public class DateUtils {
 		return totalHorasDiaria;
 
 	}
-	
 
 	public static List<LocalDate> getDatasMes(int ano, int mes) {
 
@@ -115,6 +120,7 @@ public class DateUtils {
 	 * @return
 	 */
 	public static boolean validarHorario(String horario) {
+		
 		try {
 			org.apache.commons.lang.time.DateUtils.parseDate(horario, new String[] { "HH:mm" });
 		} catch (ParseException e) {
@@ -131,12 +137,25 @@ public class DateUtils {
 	 * @return
 	 */
 	public static boolean validarDataAtividade(Atividade atividade) {
+		
 		if (atividade.getHorario1Entrada() != null || atividade.getHorario1Saida() != null
 				|| atividade.getHorario2Entrada() != null || atividade.getHorario2Saida() != null) {
 			return true;
 		}
 
 		return false;
+	}
+
+	/*
+	 * 
+	 */
+	public static String dateTimeFormatter(LocalDateTime param) {
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+		String formattedDateTime = param.format(formatter);
+		
+		return formattedDateTime;
 	}
 
 }

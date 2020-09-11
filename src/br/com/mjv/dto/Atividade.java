@@ -15,23 +15,17 @@ public class Atividade implements Comparable<Atividade> {
 	private String descricao;
 	private Project projeto;
 	
+	
+	
 	private LocalTime horario1Entrada;
 	private LocalTime horario1Saida;
 	
 	private LocalTime horario2Entrada;
 	private LocalTime horario2Saida;
 	
-	public Atividade() {
-		
-	}
-
-//	public Atividade(LocalDate data, Duration totalHoras, String descricao, String nomeProjeto) {
-//		this.data = data;
-//		this.totalHoras = totalHoras;
-//		this.descricao = descricao;
-//		this.nomeProjeto = nomeProjeto;
-//	}
-
+	
+	
+	
 	public String getTimeEntryID() {
 		return timeEntryID;
 	}
