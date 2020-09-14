@@ -32,6 +32,9 @@ import br.com.mjv.utils.DateUtils;
 public class ClockifyRestService {
 
 	private static final String MJV_WORKSPACE = "5cd5b8daf15c98690baa2da3";
+	
+	// Ajuste em horas para enviar ao servidor.
+	private static final int HOURS_TO_ADJUST = 3;
 
 	public static List<Atividade> reportSummary(int ano, int mes, String apiKey) throws IOException {
 
@@ -107,9 +110,6 @@ public class ClockifyRestService {
 
 		String body = "{ \n  \"description\": \"" + atividade.getDescricao() + "\",\n  \"projectId\": \"" + atividade.getProjeto().getId() + "\",\n";
 		String initBody = body;
-
-		// Ajuste em horas para enviar ao servidor.
-		final int ajuste = 3;
 		
 		LocalDate dataAtividade = atividade.getData();
 		
@@ -119,26 +119,26 @@ public class ClockifyRestService {
 		LocalDateTime segundaSaida    = null;
 		
 		if(atividade.getHorario1Entrada() != null) {
-			primeiraEntrada = LocalDateTime.of(dataAtividade, atividade.getHorario1Entrada()).plusHours(ajuste);
+			primeiraEntrada = LocalDateTime.of(dataAtividade, atividade.getHorario1Entrada()).plusHours(HOURS_TO_ADJUST);
 		}
 		
 		if(atividade.getHorario1Saida() != null) {
-			primeiraSaida = LocalDateTime.of(dataAtividade, atividade.getHorario1Saida()).plusHours(ajuste);
+			primeiraSaida = LocalDateTime.of(dataAtividade, atividade.getHorario1Saida()).plusHours(HOURS_TO_ADJUST);
 		}
 		
 		if(atividade.getHorario2Entrada() != null) {
-			segundaEntrada = LocalDateTime.of(dataAtividade, atividade.getHorario2Entrada()).plusHours(ajuste);
+			segundaEntrada = LocalDateTime.of(dataAtividade, atividade.getHorario2Entrada()).plusHours(HOURS_TO_ADJUST);
 		}
 		
 		if(atividade.getHorario2Entrada() != null) {
-			segundaSaida = LocalDateTime.of(dataAtividade, atividade.getHorario2Saida()).plusHours(ajuste);
+			segundaSaida = LocalDateTime.of(dataAtividade, atividade.getHorario2Saida()).plusHours(HOURS_TO_ADJUST);
 		}
 		
 		/*
 		 * Horario do almoco - 12h - 13h
 		 */
-		LocalDateTime saidaAlmoco   = LocalDateTime.of(dataAtividade, LocalTime.of(12, 0)).plusHours(ajuste);
-		LocalDateTime retornoAlmoco = LocalDateTime.of(dataAtividade, LocalTime.of(13, 0)).plusHours(ajuste);
+		LocalDateTime saidaAlmoco   = LocalDateTime.of(dataAtividade, LocalTime.of(12, 0)).plusHours(HOURS_TO_ADJUST);
+		LocalDateTime retornoAlmoco = LocalDateTime.of(dataAtividade, LocalTime.of(13, 0)).plusHours(HOURS_TO_ADJUST);
 		
 
 		/**
@@ -160,7 +160,7 @@ public class ClockifyRestService {
 			 * horario1Entrada: 08:00; horario1Saida: 17:00; horario2Entrada: null;
 			 * horario2Saida: null;
 			 */
-			if (primeiraSaida.getHour() > (12 + ajuste)) {
+			if (primeiraSaida.getHour() > (12 + HOURS_TO_ADJUST)) {
 
 				/*
 				 * Primeiro registro. Horário de entrada até 12:00 (horário de almoço)
@@ -325,6 +325,12 @@ public class ClockifyRestService {
 				
 			}
 		}
+		
+		/*
+		 * Atualiza os horários de entrada e saída, subtraindo as 3 horas atuais a mais.
+		 */
+		entries = updateDateTime(entries);
+		
 
 		for (Entry entry : entries) {
 
@@ -354,6 +360,27 @@ public class ClockifyRestService {
 		}
 
 		return atividades;
+	}
+	
+	
+	/**
+	 * Percorre a lista e atualiza os dias e horários para o FUSO, definido atualmente em +3
+	 * @param entries
+	 * @return
+	 */
+	private static List<Entry> updateDateTime(List<Entry> entries){
+				
+		for(Entry entry : entries) {
+			LocalDateTime start = entry.getTimeInterval().getStart().minusHours(HOURS_TO_ADJUST);
+			entry.getTimeInterval().setStartDate(start);
+			
+			LocalDateTime end = entry.getTimeInterval().getEnd().minusHours(HOURS_TO_ADJUST);
+			entry.getTimeInterval().setEndDate(end);
+			
+		}
+		
+		return entries;
+		
 	}
 	
 	

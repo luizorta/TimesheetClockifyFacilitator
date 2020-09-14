@@ -30,9 +30,6 @@ public class TimesheetServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
-		
-		
 		if(request.getParameter("action") == null || request.getParameter("action").equalsIgnoreCase("inicio")) {
 			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");  
 			rd.forward(request, response);  

@@ -69,15 +69,11 @@ public class DateUtils {
 
 		Duration totalHorasDiaria = Duration.ZERO;
 
-		if (data.isEqual(LocalDate.of(2020, 8, 14))) {
-			System.out.println("");
-		}
-
 		for (Entry entry : entries) {
 
-			LocalDateTime startDate = entry.getTimeInterval().getStart();
-
-			if (data.isEqual(startDate.toLocalDate())) {
+			LocalDateTime start = entry.getTimeInterval().getStart();
+			
+			if (data.isEqual(start.toLocalDate())) {
 				if (entry.getTimeInterval().getDuration() != null) {
 					totalHorasDiaria = totalHorasDiaria.plus(entry.getTimeInterval().getDuration());
 				}
