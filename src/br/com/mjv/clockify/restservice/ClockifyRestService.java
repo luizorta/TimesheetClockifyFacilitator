@@ -371,11 +371,16 @@ public class ClockifyRestService {
 	private static List<Entry> updateDateTime(List<Entry> entries){
 				
 		for(Entry entry : entries) {
-			LocalDateTime start = entry.getTimeInterval().getStart().minusHours(HOURS_TO_ADJUST);
-			entry.getTimeInterval().setStartDate(start);
 			
-			LocalDateTime end = entry.getTimeInterval().getEnd().minusHours(HOURS_TO_ADJUST);
-			entry.getTimeInterval().setEndDate(end);
+			if(entry.getTimeInterval().getStart() != null) {
+				LocalDateTime start = entry.getTimeInterval().getStart().minusHours(HOURS_TO_ADJUST);
+				entry.getTimeInterval().setStartDate(start);	
+			}
+
+			if(entry.getTimeInterval().getEnd() != null) {
+				LocalDateTime end = entry.getTimeInterval().getEnd().minusHours(HOURS_TO_ADJUST);
+				entry.getTimeInterval().setEndDate(end);
+			}
 			
 		}
 		

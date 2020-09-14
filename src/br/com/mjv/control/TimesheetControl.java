@@ -96,7 +96,7 @@ public class TimesheetControl {
 		/*
 		 * BUSCA TODAS ENTRADAS NO CLOCKIFY
 		 */
-		Log.logDebug("Buscando as entradas no Clockify para o período de " + periodo + "...");
+		Log.logDebug("Buscando as entradas com detalhes no Clockify para o período de " + periodo + "...");
 		try {
 			atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user, true);
 		} catch (IOException e) {
