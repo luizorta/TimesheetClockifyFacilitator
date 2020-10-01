@@ -2,6 +2,7 @@ package br.com.mjv.servlets;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.WordUtils;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -58,11 +60,11 @@ public class TimesheetServlet extends HttpServlet {
 			String strMes = StringUtils.leftPad(String.valueOf(mes), 2, '0');
 			
 			LocalDate dt = new LocalDate(ano, mes, 1);
-			DateTimeFormatter fmt = DateTimeFormat.forPattern("MMMM");
+			DateTimeFormatter fmt = DateTimeFormat.forPattern("MMMM").withLocale(new Locale("pt", "BR"));
 			//DateTimeFormatter fmt = DateTimeFormat.forPattern("MMMM").withLocale(Locale.forLanguageTag("en-US"));
 			String strMesExtenso = fmt.print(dt);
 			
-			String filename = strMes + ". Planilha de atividades - " + strMesExtenso + "." + (ano+"").substring(2,4) + " - "+  nomeColaborador;
+			String filename = strMes + ". Planilha de atividades - " + strMesExtenso + "." + (ano+"").substring(2,4) + " - "+  WordUtils.capitalize(nomeColaborador.toLowerCase());
 			
 			
 			response.reset();
