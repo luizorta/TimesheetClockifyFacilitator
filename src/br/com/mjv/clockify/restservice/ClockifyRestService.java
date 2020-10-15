@@ -131,7 +131,22 @@ public class ClockifyRestService {
 		}
 		
 		if(atividade.getHorario2Entrada() != null) {
-			segundaSaida = LocalDateTime.of(dataAtividade, atividade.getHorario2Saida()).plusHours(HOURS_TO_ADJUST);
+			
+			/*
+			 * Se houve uma virada de dia...
+			 * 
+			 * Primeira parte do dia ok. Ai por exemplo, volta a trabalhar as 19h e fica até 00:30 do dia seguinte.
+			 * Casos de implantação ou correção de problemas em produção.
+			 * Nesse cenário, precisamos alterar a data da segundaSaida, adicionando 1 dia.
+			 */
+			if(atividade.getHorario2Entrada().isBefore(LocalTime.of(23, 59)) && 
+					atividade.getHorario2Saida().isAfter(LocalTime.of(0, 0))) {
+				segundaSaida = LocalDateTime.of(dataAtividade.plusDays(1), atividade.getHorario2Saida()).plusHours(HOURS_TO_ADJUST);
+			} else {
+				segundaSaida = LocalDateTime.of(dataAtividade, atividade.getHorario2Saida()).plusHours(HOURS_TO_ADJUST);	
+			}
+			
+			
 		}
 		
 		/*
@@ -141,6 +156,8 @@ public class ClockifyRestService {
 		LocalDateTime retornoAlmoco = LocalDateTime.of(dataAtividade, LocalTime.of(13, 0)).plusHours(HOURS_TO_ADJUST);
 		
 
+		
+		
 		/**
 		 * Apenas o primeiro horário de entrada horario1Entrada: 08:00 horario1Saida:
 		 * null; horario2Entrada: null; horario2Saida: null;
@@ -151,17 +168,14 @@ public class ClockifyRestService {
 			body += "\n}";
 			insertTimeEntry(body, apiKey);
 			body = initBody;
-		}
-
-		if (primeiraEntrada != null && primeiraSaida != null && segundaEntrada == null && segundaSaida == null) {
-
+		} else {
 			/**
 			 * Horário de entrada até meio dia - Entrada às 13:00 até horário de saída
 			 * horario1Entrada: 08:00; horario1Saida: 17:00; horario2Entrada: null;
 			 * horario2Saida: null;
 			 */
 			if (primeiraSaida.getHour() > (12 + HOURS_TO_ADJUST)) {
-
+	
 				/*
 				 * Primeiro registro. Horário de entrada até 12:00 (horário de almoço)
 				 */
@@ -171,7 +185,7 @@ public class ClockifyRestService {
 				body += "\n}";
 				insertTimeEntry(body, apiKey);
 				body = initBody;
-
+	
 				/*
 				 * Segundo registro. das 13:00 (volta do almoço) até horário de saída
 				 */
@@ -181,9 +195,9 @@ public class ClockifyRestService {
 				body += "\n}";
 				insertTimeEntry(body, apiKey);
 				body = initBody;
-
+	
 			} else {
-
+	
 				/**
 				 * Horário de entrada até horário da primeira saída (antes do almoço)
 				 * horario1Entrada: 08:00; horario1Saida: 11:00; horario2Entrada: null;
@@ -196,20 +210,14 @@ public class ClockifyRestService {
 				insertTimeEntry(body, apiKey);
 				body = initBody;
 			}
+		
 		}
+		
+		
+		
+		
 
-		if (primeiraEntrada != null && primeiraSaida != null && segundaEntrada != null) {
-
-			/**
-			 * Horário de entrada até horário primeira saída horario1Entrada: 08:00;
-			 * horario1Saida: 11:00; horario2Entrada: 13:00; horario2Saida: ?;
-			 */
-			startDate = DateUtils.dateTimeFormatter(primeiraEntrada);
-			endDate   = DateUtils.dateTimeFormatter(primeiraSaida);
-			body += "  \"start\": \"" + startDate + "\",\n" + "  \"end\": \"" + endDate + "\"";
-			body += "\n}";
-			insertTimeEntry(body, apiKey);
-			body = initBody;
+		if (segundaEntrada != null) {
 
 			/**
 			 * Horário segunda entrada horario1Entrada: 08:00; horario1Saida: 11:00;
@@ -238,6 +246,18 @@ public class ClockifyRestService {
 			}
 
 		}
+
+	}
+	
+	
+	public static void main(String[] args) {
+		LocalDate data = LocalDate.of(2020, 10, 9);
+		
+		LocalTime hora = LocalTime.of(3, 55).plusHours(20);
+		
+		LocalDateTime result = LocalDateTime.of(data, hora).plusHours(HOURS_TO_ADJUST);
+		
+		System.out.println(result.toString());
 
 	}
 
