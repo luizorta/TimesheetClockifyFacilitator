@@ -155,7 +155,12 @@ public class ClockifyRestService {
 		LocalDateTime saidaAlmoco   = LocalDateTime.of(dataAtividade, LocalTime.of(12, 0)).plusHours(HOURS_TO_ADJUST);
 		LocalDateTime retornoAlmoco = LocalDateTime.of(dataAtividade, LocalTime.of(13, 0)).plusHours(HOURS_TO_ADJUST);
 		
-
+		/*
+		 * FALTA
+		 */
+		if (primeiraEntrada == null) {
+			return;
+		}
 		
 		
 		/**
