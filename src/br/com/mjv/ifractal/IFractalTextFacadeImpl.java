@@ -2,8 +2,6 @@ package br.com.mjv.ifractal;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -123,6 +121,22 @@ public class IFractalTextFacadeImpl implements IFractalFacade {
 					// Elimina os caracteres antes da primeira data de entrada
 					strCurrentLine = strCurrentLine.substring(15, strCurrentLine.length());
 					
+					
+					/*
+					 * ABONO
+					 */
+					if(strCurrentLine.startsWith("* A")) {
+						String horario1Entrada = "08:00";
+						String horario1Saida   = "17:00";
+						
+						atividade.setHorario1Entrada(LocalTime.parse(horario1Entrada, DateTimeFormatter.ofPattern("HH:mm")));
+						atividade.setHorario1Saida(LocalTime.parse(horario1Saida, DateTimeFormatter.ofPattern("HH:mm")));
+						
+						atividades.add(atividade);
+						
+						continue;
+					}
+					
 					/****************************************************
 					 *                  1a ENTRADA
 					 *                 
@@ -161,6 +175,7 @@ public class IFractalTextFacadeImpl implements IFractalFacade {
 					}
 					
 					String horario1Saida = strCurrentLine.substring(beginIndex, endIndex);
+					
 					if (DateUtils.validarHorario(horario1Saida))
 						atividade.setHorario1Saida(LocalTime.parse(horario1Saida, DateTimeFormatter.ofPattern("HH:mm")));
 					
