@@ -114,6 +114,9 @@ public class TimesheetControl {
 		 */
 		try {
 			bytes = excelFacade.updatePlanilha(user.getName(), atividadesClockify, ano, mes);
+		} catch(NullPointerException e) {
+			System.err.println("Erro ao ler o arquivo de planilha base xls. Verifique novamente o caminho.");
+			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

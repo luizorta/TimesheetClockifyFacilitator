@@ -26,7 +26,9 @@ public class ExcelFacadeImpl implements ExcelFacade {
 
 		String strMes = StringUtils.leftPad(String.valueOf(mes), 2, '0');
 		
-		XSSFWorkbook workbook = new XSSFWorkbook(this.getClass().getResourceAsStream("/entrada-"+ strMes + "-" + ano + ".xlsx"));
+		XSSFWorkbook workbook = new XSSFWorkbook("/Users/luizorta/Documents/TSCF/planilhas/entrada-"+ strMes + "-" + ano + ".xlsx");
+		//XSSFWorkbook workbook = new XSSFWorkbook(this.getClass().getResourceAsStream("/entrada-"+ strMes + "-" + ano + ".xlsx"));
+		
 		XSSFSheet sheet = workbook.getSheetAt(0);
 
 		/*
