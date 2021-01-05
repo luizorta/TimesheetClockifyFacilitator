@@ -84,7 +84,8 @@ public class TimesheetServlet extends HttpServlet {
 				out.flush();
 			} else {
 			
-				RequestDispatcher rd = request.getRequestDispatcher("index.jsp?mensagemAlerta=AtualizaÃ§Ã£o executada com sucesso!");
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp?mensagemAlerta=Atualização executada com sucesso!");
+				response.setHeader("Content-Type", "text/xml; charset=ISO-8859-1");
 				rd.forward(request, response);
 
 			}

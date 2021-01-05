@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <!DOCTYPE html>
 <html>
@@ -94,7 +94,7 @@
 						
 						<div class="form-group">
 							<label for="description"> Entry Description (Clockify) </label> 
-							<input xvalue="BS | RJ | SaÃºde | Concierge | [MÃ³dulos Administrativos] - Desenvolvimento" type="text" class="form-control" name="description" id="description" />
+							<input xvalue="BS | RJ | Saúde | Concierge | [Módulos Administrativos] - Desenvolvimento" type="text" class="form-control" name="description" id="description" />
 						</div>
 						
 						<div class="form-group">
