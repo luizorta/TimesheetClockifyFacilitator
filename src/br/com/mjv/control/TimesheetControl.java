@@ -17,7 +17,7 @@ import br.com.mjv.utils.Log;
 
 public class TimesheetControl {
 
-	public byte[] iniciarProcesso(Atividade atividade, String apiKey, int mes, int ano, User user, String content) {
+	public byte[] iniciarProcesso(Atividade atividade, String apiKey, int mes, int ano, User user, String content, boolean isExport) {
 
 		Log.logDebug("Executando...");
 		// IFractalFacade iFractalFacade = new IFractalHTMLFacadeImpl();
@@ -88,46 +88,53 @@ public class TimesheetControl {
 			Log.logDebug(atividadesParaInserir.size() + " atividades inseridas com sucesso!");
 
 		}
-		Log.logDebug("===================================================================================");
-
-		Log.logDebug("===============================  Excel Timesheet ==================================");
-		ExcelFacade excelFacade = new ExcelFacadeImpl();
-
-		/*
-		 * BUSCA TODAS ENTRADAS NO CLOCKIFY
-		 */
-		Log.logDebug("Buscando as entradas com detalhes no Clockify para o período de " + periodo + "...");
-		try {
-			atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user, true);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		
+		
+		if(isExport) {
+			Log.logDebug("===================================================================================");
+	
+			Log.logDebug("===============================  Excel Timesheet ==================================");
+			ExcelFacade excelFacade = new ExcelFacadeImpl();
+	
+			/*
+			 * BUSCA TODAS ENTRADAS NO CLOCKIFY
+			 */
+			Log.logDebug("Buscando as entradas com detalhes no Clockify para o período de " + periodo + "...");
+			try {
+				atividadesClockify = ClockifyRestService.timeEntries(ano, mes, apiKey, user, true);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Log.logDebug("Entradas recuperadas com sucesso!");
+	
+			Log.logDebug("Preenchendo a planilha timesheet para o período de " + periodo);
+			
+			byte[] bytes = null;
+	
+			/*
+			 * ATUALIZA PLANILHA EXCEL
+			 */
+			try {
+				bytes = excelFacade.updatePlanilha(user.getName(), atividadesClockify, ano, mes);
+			} catch(NullPointerException e) {
+				System.err.println("Erro ao ler o arquivo de planilha base xls. Verifique novamente o caminho.");
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Log.logDebug("Planilha preenchida com sucesso!");
+			Log.logDebug("===================================================================================");
+			
+			Log.logDebug("Processo finalizado.");
+			
+			
+			return bytes;
+		} else {
+			return null;
 		}
-		Log.logDebug("Entradas recuperadas com sucesso!");
-
-		Log.logDebug("Preenchendo a planilha timesheet para o período de " + periodo);
-		
-		byte[] bytes = null;
-
-		/*
-		 * ATUALIZA PLANILHA EXCEL
-		 */
-		try {
-			bytes = excelFacade.updatePlanilha(user.getName(), atividadesClockify, ano, mes);
-		} catch(NullPointerException e) {
-			System.err.println("Erro ao ler o arquivo de planilha base xls. Verifique novamente o caminho.");
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Log.logDebug("Planilha preenchida com sucesso!");
-		Log.logDebug("===================================================================================");
-		
-		Log.logDebug("Processo finalizado.");
-		
-		
-		return bytes;
 
 	}
 

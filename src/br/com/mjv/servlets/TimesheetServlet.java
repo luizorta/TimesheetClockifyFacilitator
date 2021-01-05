@@ -37,6 +37,8 @@ public class TimesheetServlet extends HttpServlet {
 			rd.forward(request, response);  
 		} else if(request.getParameter("action").equalsIgnoreCase("inserir")) {
 			
+			boolean isExport = request.getParameter("isExport") == null ? false : true;
+						
 			String data = request.getParameter("mesAno");
 			String nomeColaborador = request.getParameter("userName");
 			
@@ -52,32 +54,40 @@ public class TimesheetServlet extends HttpServlet {
 					request.getParameter("apiKey"),
 					mes,
 					ano,
-					request.getParameter("content")
+					request.getParameter("content"),
+					isExport
 					
 					);
 			
 			
-			String strMes = StringUtils.leftPad(String.valueOf(mes), 2, '0');
+			if(isExport) {
+				String strMes = StringUtils.leftPad(String.valueOf(mes), 2, '0');
+				
+				LocalDate dt = new LocalDate(ano, mes, 1);
+				DateTimeFormatter fmt = DateTimeFormat.forPattern("MMMM").withLocale(new Locale("pt", "BR"));
+				//DateTimeFormatter fmt = DateTimeFormat.forPattern("MMMM").withLocale(Locale.forLanguageTag("en-US"));
+				String strMesExtenso = fmt.print(dt);
+				
+				String filename = strMes + ". Planilha de atividades - " + strMesExtenso + "." + (ano+"").substring(2,4) + " - "+  WordUtils.capitalize(nomeColaborador.toLowerCase());
+				
+				
+				response.reset();
+				response.setContentType("application/vnd.ms-excel");
+				response.setHeader("Content-Transfer-Encoding", "binary");
+				response.setHeader("Content-Disposition","attachment; filename=\""+filename+".xlsx\""); 
+				response.setContentLength(bytes.length);
+				
+				
+				OutputStream out = response.getOutputStream(); 
+				out.write(bytes);
+				
+				out.flush();
+			} else {
 			
-			LocalDate dt = new LocalDate(ano, mes, 1);
-			DateTimeFormatter fmt = DateTimeFormat.forPattern("MMMM").withLocale(new Locale("pt", "BR"));
-			//DateTimeFormatter fmt = DateTimeFormat.forPattern("MMMM").withLocale(Locale.forLanguageTag("en-US"));
-			String strMesExtenso = fmt.print(dt);
-			
-			String filename = strMes + ". Planilha de atividades - " + strMesExtenso + "." + (ano+"").substring(2,4) + " - "+  WordUtils.capitalize(nomeColaborador.toLowerCase());
-			
-			
-			response.reset();
-			response.setContentType("application/vnd.ms-excel");
-			response.setHeader("Content-Transfer-Encoding", "binary");
-			response.setHeader("Content-Disposition","attachment; filename=\""+filename+".xlsx\""); 
-			response.setContentLength(bytes.length);
-			
-			
-			OutputStream out = response.getOutputStream(); 
-			out.write(bytes);
-			
-			out.flush();
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp?mensagemAlerta=Atualização executada com sucesso!");
+				rd.forward(request, response);
+
+			}
 			  
 		}
 		
@@ -85,7 +95,7 @@ public class TimesheetServlet extends HttpServlet {
 	}
 
 	private byte[] iniciarProcesso(String description, String projectId, String userName, String userId, String apiKey,
-			int mes, int ano, String content) {
+			int mes, int ano, String content, boolean isExport) {
 		Atividade atividade = new Atividade();
 		atividade.setDescricao(description);
 
@@ -98,7 +108,7 @@ public class TimesheetServlet extends HttpServlet {
 		user.setId(userId);
 
 		TimesheetControl tsE = new TimesheetControl();
-		return tsE.iniciarProcesso(atividade, apiKey, mes, ano, user, content);
+		return tsE.iniciarProcesso(atividade, apiKey, mes, ano, user, content, isExport);
 
 	}
 
